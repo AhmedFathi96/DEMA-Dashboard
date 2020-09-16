@@ -1,0 +1,43 @@
+.notification-container-bottom-left {
+    left: 20px;
+    bottom: 6rem;
+}
+
+.infoWrapper{
+    display: flex;
+    flex-direction: column;
+}
+.infoWrapper span{
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+}
+
+
+.infoWrapper span:nth-of-type(2n) {
+    background: rgb(227, 228, 230);
+}
+
+.cardsWrapper{
+    display: flex;
+    flex-wrap: wrap;
+}
+.card{
+    width: 100%;
+    margin: 2rem;
+}
+p{
+    display: inline;
+    padding: 0 0.5rem;
+}
+
+.alert{
+    width: 60%;
+    margin: 5rem auto;
+    text-align: center;
+}
+@media (min-width: 576px){
+    .modal-dialog {
+        max-width: 60rem !important;
+        margin: 1.75rem auto;
+    }
+}

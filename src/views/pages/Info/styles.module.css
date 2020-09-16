@@ -1,0 +1,13 @@
+.notification-container-bottom-left {
+    left: 20px;
+    bottom: 6rem;
+}
+
+
+
+@media (min-width: 576px){
+    .modal-dialog {
+        max-width: 60rem !important;
+        margin: 1.75rem auto;
+    }
+}

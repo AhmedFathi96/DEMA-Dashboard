@@ -1,0 +1,16 @@
+.accordion .card-header[aria-expanded=false]:after {
+    content: "\ea0f";
+}
+
+.accordion .card-header:after {
+    content: "\ea0f";
+    position: absolute;
+    right: 1.5rem;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font: normal normal normal 14px/1 NucleoIcons;
+    line-height: 0;
+    -webkit-transition: all .15s cubic-bezier(.68,-.55,.265,1.55);
+    transition: all .15s cubic-bezier(.68,-.55,.265,1.55);
+}
