@@ -28,10 +28,10 @@ export const createAboutURL = `${server}api/about/create-about`;
 export const editAboutURL = (id:string) => `${server}api/about/update-about/${id}`;
 export const deleteAboutURL = (id:string) => `${server}api/about/delete-about/${id}`;
 
-export const getStatisticsURL = `${server}api/statistics/get-statistics`;
-export const createStatisticURL = `${server}api/statistics/add-statistic`;
-export const editStatisticURL = (id:string) => `${server}api/statistics/update-statistic/${id}`;
-export const deleteStatisticURL = (id:string) => `${server}api/statistics/delete-statistic/${id}`;
+export const getStatisticsURL = `${server}api/statistic/get-statistics`;
+export const createStatisticURL = `${server}api/statistic/add-statistic`;
+export const editStatisticURL = (id:string) => `${server}api/statistic/update-statistic/${id}`;
+export const deleteStatisticURL = (id:string) => `${server}api/statistic/delete-statistic/${id}`;
 
 
 
@@ -101,7 +101,55 @@ export const createVisionURL = `${server}api/vision/add-vision`;
 export const deleteVisionURL = (id:string) => `${server}api/vision/delete-vision/${id}`;
 export const editVisionURL = (id:string) => `${server}api/vision/update-vision/${id}`;
 
-export const getGroupURL = `${server}api/group/get-groups`;
-export const createGroupURL = `${server}api/group/add-group`;
-export const deleteGroupURL = (id:string) => `${server}api/group/delete-group/${id}`;
-export const editGroupURL = (id:string) => `${server}api/group/update-group/${id}`;
+export const getTeamURL = `${server}api/team/get-teams`;
+export const createTeamURL = `${server}api/team/add-team`;
+export const deleteTeamURL = (id:string) => `${server}api/team/delete-team/${id}`;
+export const editTeamURL = (id:string) => `${server}api/team/update-team/${id}`;
+
+export const getTagURL = `${server}api/tag/get-tags`;
+export const createTagURL = `${server}api/tag/create-tag`;
+export const deleteTagURL = (id:string) => `${server}api/tag/delete-tag/${id}`;
+export const editTagURL = (id:string) => `${server}api/tag/update-tag/${id}`;
+
+
+export const getSizeURL = `${server}api/size/get-sizes`;
+export const createSizeURL = `${server}api/size/create-size`;
+export const deleteSizeURL = (id:string) => `${server}api/size/delete-size/${id}`;
+export const editSizeURL = (id:string) => `${server}api/size/update-size/${id}`;
+
+export const getColorURL = `${server}api/color/get-colors`;
+export const createColorURL = `${server}api/color/create-color`;
+export const deleteColorURL = (id:string) => `${server}api/color/delete-color/${id}`;
+export const editColorURL = (id:string) => `${server}api/color/update-color/${id}`;
+
+export const getCollectionURL = `${server}api/collection/get-collections`;
+export const createCollectionURL = `${server}api/collection/add-collection`;
+export const deleteCollectionURL = (id:string) => `${server}api/collection/delete-collection/${id}`;
+export const editCollectionURL = (id:string) => `${server}api/collection/update-collection/${id}`;
+
+export const getCategoryURL = `${server}api/category/get-categories`;
+export const createCategoryURL = `${server}api/category/add-category`;
+export const deleteCategoryURL = (id:string) => `${server}api/category/delete-category/${id}`;
+export const editCategoryURL = (id:string) => `${server}api/category/update-category/${id}`;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

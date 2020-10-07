@@ -13,7 +13,6 @@ import {
   Row,
   Button,
   Modal,
-  Collapse,
   Form,
   FormGroup,
   Input,
@@ -21,41 +20,32 @@ import {
 } from "reactstrap";
 import SimpleHeader from "../../../components/Headers/SimpleHeader";
 import { useDispatch } from "react-redux";
-import {  IStatistic } from "../../../lib";
+import {  ICategory } from "../../../lib";
 import { useSelect } from "../../../helper";
 import Loader  from 'react-loader-spinner';
 import ReactNotification from 'react-notifications-component';
-import { getStatistics, editStatistic, createStatistic, deleteStatistic } from "../../../React-Redux/Actions/statistic-action";
+import { getCategories,createCategory,editCategory,deleteCategory } from "../../../React-Redux/Actions/itemInfo-action";
 
-const Statistics: React.FC = () => {
+const Category: React.FC = () => {
 
   const [modal , setModel] = useState(false)
   const [notification_modal , setNotificationModel] = useState(false)
   const [is_editing , setEditing] = useState(false)
-  const [obj , setObj] = useState<IStatistic>({
+  const [obj , setObj] = useState<ICategory>({
     _id:'',
-    arabic_desc:'',
-    count:'',
-    english_desc:'',
+    arabic_name:"",
+    english_name:'',
+    starting_price:"",
+
   })
 
-  const {Statistic,Statistic_is_loading} = useSelect(state=> state.statisticReducer)
+  const {categories,categories_is_loading} = useSelect(state=> state.itemInfoReducer)
 
 
-  const [openedCollapsesArr , setOpenedCollapses] = useState([`collapse`])
-
-  const collapsesToggle = (collapse:any) => {
-    let openedCollapses:any = openedCollapsesArr;
-    if (openedCollapses.includes(collapse)) {
-      setOpenedCollapses([])
-    } else {
-      setOpenedCollapses([collapse])
-    }
-  };
 
   React.useEffect(() => {
-    dispatch(getStatistics())
-  } , [])
+    dispatch(getCategories())
+  },[])
   const dispatch = useDispatch();
   const toggleModal = () => {
     setModel(pt => !pt);
@@ -69,23 +59,18 @@ const Statistics: React.FC = () => {
     e.preventDefault();
     console.log('Event' , e.target.value);
     let data = new FormData();
+    data.append('english_name', e.target.english_name.value);
+    data.append('arabic_name', e.target.arabic_name.value);
+  
+    data.append('starting_price', e.target.starting_price.value);
+    data.append('category_img', e.target.category_img.files[0]);
 
-    // arabic_desc:'',
-    // count:'',
-    // english_desc:'',
-    data.append('count', e.target.count.value);
-    data.append('arabic_desc', e.target.arabic_desc.value);
-
-    data.append('english_desc', e.target.english_desc.value);
-    data.append('statistic_img', e.target.statistic_img.files[0]);
-
-    console.log('Obj =====>' , obj);
 
     if(is_editing){
-      dispatch(editStatistic({data:data , id:obj._id === undefined? '':obj._id}));
+      dispatch(editCategory({data:data , id:obj._id === undefined? '':obj._id}));
       toggleModal();
     }else{
-      dispatch(createStatistic(data));
+      dispatch(createCategory(data));
       toggleModal();
     }
   }
@@ -120,12 +105,12 @@ const Statistics: React.FC = () => {
                   <i className="ni ni-bell-55 ni-3x" />
                   <h4 className="heading mt-4">You should read this!</h4>
                   <p>
-                    Do you want to remove {obj.english_desc} from Statistics ? to confirm please press delete otherwise close
+                    Do you want to remove {obj.english_name} from Categories ? to confirm please press delete otherwise close
                   </p>
                 </div>
               </div>
               <div className="modal-footer">
-                <Button className="btn-white" color="default" type="button"  onClick={()=>{dispatch(deleteStatistic(obj._id !== undefined? obj._id: '')); toggleNotificationModal()}}>
+                <Button className="btn-white" color="default" type="button"  onClick={()=>{dispatch(deleteCategory(obj._id !== undefined? obj._id: '')); toggleNotificationModal()}}>
                   Delete
                 </Button>
                 <Button
@@ -146,7 +131,7 @@ const Statistics: React.FC = () => {
         >
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLabel">
-              {obj?.english_desc === ''? 'Create Statistic': 'Edit Statistic'}
+              {obj?.english_name === ''? 'Create Category': 'Edit Category'}
             </h5>
             <button
               aria-label="Close"
@@ -160,36 +145,28 @@ const Statistics: React.FC = () => {
           </div>
           <div className="modal-body">
           <Form role="form"onSubmit={(event) => handleSubmit(event)}>
-            <Alert className="alert-default">
-              <strong>Count Main Info</strong>
-            </Alert>
             <FormGroup>
-              <label className="form-control-label" htmlFor="example-text-input">Count</label>
-              <Input id="count" name="count" defaultValue={obj.count} placeholder="count ..." type="text" />
-            </FormGroup>
-
-            <Alert className="alert-default">
-              <strong>Content Main Info</strong>
-            </Alert>
-            <FormGroup>
-              <label className="form-control-label" htmlFor="example-text-input">English Sub Header</label>
-              <Input id="english_desc" rows="3" name="english_desc" defaultValue={obj.english_desc} placeholder="English Content ..." type="text" />
+              <label className="form-control-label" htmlFor="example-text-input">English Name</label>
+              <Input id="english_name" name="english_name" defaultValue={obj.english_name} placeholder="English Name< ..." type="text" />
             </FormGroup>
             <FormGroup>
-              <label className="form-control-label" htmlFor="example-text-input">Arabic Sub Header</label>
-              <Input id="arabic_desc" rows="3"  name="arabic_desc" defaultValue={obj.arabic_desc} placeholder="Arabic Content ..." type="text" />
+              <label className="form-control-label" htmlFor="example-text-input">Arabic Name</label>
+              <Input id="arabic_name" name="arabic_name" defaultValue={obj.arabic_name} placeholder="Arabic Name ..." type="text" />
             </FormGroup>
-
+            <FormGroup>
+              <label className="form-control-label" htmlFor="example-text-input">Starting Price</label>
+              <Input id="starting_price" name="starting_price" defaultValue={obj.starting_price} placeholder="Content ..." type="text" />
+            </FormGroup>
             <div className="custom-file">
               <input
                 className="custom-file-input"
-                id="statistic_img"
-                name="statistic_img"
+                id="category_img"
+                name="category_img"
                 lang="en"
                 type="file"
               />
               <label className="custom-file-label" htmlFor="customFileLang">
-                Select Statistic image
+                Select Category image
               </label>
             </div>
             <div className="modal-footer">
@@ -213,16 +190,16 @@ const Statistics: React.FC = () => {
         </Modal>
       
         {
-          Statistic_is_loading?
+          categories_is_loading?
             <>
-              <SimpleHeader name="Statistics" parentName="Statistics" />
+              <SimpleHeader name="Categories" parentName="Categories" />
               <Container className="mt--6" fluid>
               <Row>
                   <div className="col">
                     <Card>
                       <CardHeader className="border-0">
                         <div style={{display:'flex' , alignItems:'center', justifyContent:'space-between'}}>
-                          <h3 className="mb-0">Statistics table</h3>
+                          <h3 className="mb-0">Categories table</h3>
                           
                           <Button onClick={()=>{
                             toggleModal();
@@ -230,14 +207,14 @@ const Statistics: React.FC = () => {
                             setObj(
                               { 
                                 _id:'',
-                                count:'',
-                                arabic_desc:'',
-                                english_desc:'',
+                                arabic_name:'',
+                                english_name:'',
+                                starting_price:'',
                               }
                             )
                           
                           }} className="btn-icon btn-2" color="default" type="button">
-                              <span className="btn-inner--text">Create new Statistic</span>
+                              <span className="btn-inner--text">Create new Category</span>
                               <span className="btn-inner--icon">
                                 <i className="ni ni-fat-add"></i>
                               </span>
@@ -249,27 +226,27 @@ const Statistics: React.FC = () => {
 
                         <div className={styles.default.cardsWrapper}>
                           {
-                            Statistic.length > 0?
-                            Statistic.map(item =>
+                            categories.length > 0?
+                            categories.map(item =>
                               
-                              <Card className={styles.default.card}>
+                              <Card className={`${styles.default.card}`}>
                               <CardImg
                                 alt="..."
                                 className={styles.default.img}
-                                src={`http://localhost:6100/api/statistic/get-statistic-image/${item._id}/view`}
+                                src={`http://localhost:6100/api/category/get-category-image/${item._id}/view`}
                                 top 
                               />
                               <CardBody>
                                 <CardTitle>
-                                <div style={{display:'flex' , alignItems:'center', justifyContent:'space-between'}}>                                  
+                                <div style={{display:'flex' , alignItems:'center', justifyContent:'space-between'}}>
+                                  
                                   <div style={{display:'flex'}}>
                                           <Button className="btn-icon btn-2" color="success" type="button" onClick={()=>{
                                             setObj({
                                                 _id: item._id,
-                                                count:item.count,
-                                                arabic_desc:item.arabic_desc,
-                                                english_desc:item.english_desc,
-
+                                                arabic_name:item.arabic_name,
+                                                english_name:item.english_name,
+                                                starting_price:item.starting_price,
                                             })
                                             setEditing(true);
                                             toggleModal()
@@ -284,9 +261,10 @@ const Statistics: React.FC = () => {
                                               toggleNotificationModal()
                                               setObj({
                                                 _id: item._id,
-                                                count:item.count,
-                                                arabic_desc:item.arabic_desc,
-                                                english_desc:item.english_desc,
+                                                arabic_name:item.arabic_name,
+                                                english_name:item.english_name,
+                                                starting_price:item.starting_price,
+
                                             })
                                             }}
                                           >
@@ -297,62 +275,17 @@ const Statistics: React.FC = () => {
                                         </div>
                                 </div>
                               
-                                </CardTitle>
-                                <CardText>
-                                <div className="accordion">
-                                <Card className="card-plain">
-                                    <CardHeader
-                                      role="tab"
-                                      onClick={() => collapsesToggle(`collapse${item._id}`)}
-                                      aria-expanded={openedCollapsesArr.includes(
-                                        `collapse${item._id}`
-                                      )}
-                                    >
-                                      <h5 className="mb-0"> {item.english_desc} Statistic Number</h5>
-                                    </CardHeader>
-                                    <Collapse
-                                      role="tabpanel"
-                                      isOpen={openedCollapsesArr.includes(`collapse${item._id}`)}
-                                    >
-                                      <CardBody>
-                                          <div className={styles.default.infoWrapper}>
-                                            <span>Statistic Number: {item.count}</span>
-                                          
-                                      
-                                          </div>
-                                          
-                                      </CardBody>
-                                    </Collapse>
-                                  </Card>
-                                <Card className="card-plain">
-                                  <CardHeader
-                                    role="tab"
-                                    onClick={() => collapsesToggle(`collapse${item._id}2`)}
-                                    aria-expanded={openedCollapsesArr.includes(
-                                      `collapse${item._id}2`
-                                    )}
-                                  >
-                                    <h5 className="mb-0">Description</h5>
-                                  </CardHeader>
-                                  <Collapse
-                                    role="tabpanel"
-                                    isOpen={openedCollapsesArr.includes(`collapse${item._id}2`)}
-                                  >
-                                    <CardBody>
-                                        <div className={styles.default.infoWrapper}>
-                                            <span>English Description: {item.english_desc}</span>
-                                        </div>  
-                                        <div className={styles.default.infoWrapper}>
-                                            <span>Arabic Description: {item.arabic_desc}</span>
-                                        </div>  
-                                    </CardBody>
-                                  </Collapse>
-                                </Card>
-  
-                                </div>
-  
-                                
-                                </CardText>
+                                </CardTitle >
+                                    <CardTitle>
+                                      <span><b>English Name</b>: {item.english_name}</span>
+                                                        
+                                    </CardTitle>
+                                    <CardTitle>
+                                      <span><b>Arabic Name</b>: {item.arabic_name}</span>
+                                    </CardTitle>
+                                    <CardTitle>
+                                    <span><b>Starting Price</b>: {item.starting_price}</span>
+                                    </CardTitle>
                                 
                               </CardBody>
                             
@@ -361,7 +294,7 @@ const Statistics: React.FC = () => {
                             )
                             :
                             <Alert className={`alert-default ${styles.default.alert}`}>
-                              <strong>Attention!</strong> There are no Statistics to show, please Create new one from the button in the top right corner
+                              <strong>Attention!</strong> There are no Categories to show, please Create new one from the button in the top right corner
                             </Alert>
                           }
 
@@ -387,4 +320,4 @@ const Statistics: React.FC = () => {
   
 }
 
-export default Statistics;
+export default Category;

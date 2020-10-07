@@ -17,7 +17,14 @@ export interface ISliderItem{
     order:string;
 }
 
-
+export interface ITeam{
+    _id?:string;
+    team_img?:File;
+    english_name: string;
+    arabic_name: string;
+    english_job: string;
+    arabic_job: string;
+}
 export interface IProject{
     _id:string;
     project_image?:File;
@@ -157,12 +164,9 @@ export interface IInfo{
 export interface IStatistic{
     _id?:string;
     statistic_img?:File;
-    header: string;
-    
-    english_sub_header:string;
-    arabic_sub_header:string;
-
-    order:string
+    count: string;
+    arabic_desc:string;
+    english_desc:string;
 }
 
 
@@ -210,4 +214,56 @@ export interface IVision{
     english_sub_header:string;
     arabic_sub_header: string;
     order:string;
+}
+
+export interface ICategory{
+    _id?:string;
+    category_img?:File,
+    english_name:string;
+    arabic_name:string;
+    starting_price:string;
+}
+export interface ICollection{
+    _id?:string;
+    category_img?:File,
+    english_name:string;
+    arabic_name:string;
+    english_sub_header:string;
+    arabic_sub_header:string;
+}
+export interface IColor{
+    _id?:string;
+    english_name:string;
+    arabic_name:string;
+}
+export interface ISize{
+    _id?:string;
+    name:string;
+}
+export interface ITag{
+    _id?:string;
+    english_name:string;
+    arabic_name:string;
+}
+export interface IProductAdditionalInfo{
+    english_name:string,
+    arabic_name:string,
+    content:string,
+    item:string
+}
+export interface IProduct{
+    _id:string,
+    arabic_name:string,
+    english_name:string,
+    arabic_mini_description:string,
+    english_mini_description:string,
+    price_before_discount:string,
+    price_after_discount:string,
+    discount_percentage:string,
+    color: IColor[],
+    size: ISize[],
+    collections: ICollection[],
+    category: ICategory[],
+    tag: ITag[],
+    productAdditionalInfo:IProductAdditionalInfo[];
 }

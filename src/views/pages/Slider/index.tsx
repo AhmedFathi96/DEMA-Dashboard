@@ -45,7 +45,7 @@ const Slider: React.FC = () => {
 
   React.useEffect(() => {
     dispatch(getSliderItems())
-  })
+  },[])
   const dispatch = useDispatch();
   const toggleModal = () => {
     setModel(pt => !pt);

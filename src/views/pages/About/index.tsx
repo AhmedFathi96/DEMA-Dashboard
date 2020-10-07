@@ -15,8 +15,6 @@ Input,
 CardBody,
 CardTitle,
 Alert,
-CardImg,
-CardText,
 Collapse,
 Col,
 } from "reactstrap";
@@ -84,7 +82,6 @@ const About: React.FC = () => {
             goal_content:e.target.goal_content.value,
         }
 
-      
         if(is_editing){
             dispatch(editAbout({data:data , id:obj._id === undefined? '':obj._id}))
             toggleModal();

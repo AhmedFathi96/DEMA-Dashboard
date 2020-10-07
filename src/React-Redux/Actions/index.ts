@@ -231,14 +231,86 @@ export const deleteVisionAction = genericAction(deleteVision);
 
 
 
-const getGroup = 'GET-GROUP';
-export const getGroupAction = genericAction(getGroup);
+const getTeam = 'GET-TEAM';
+export const getTeamAction = genericAction(getTeam);
 
-const editGroup = 'EDIT-GROUP';
-export const editGroupAction = genericAction(editGroup);
+const editTeam = 'EDIT-TEAM';
+export const editTeamAction = genericAction(editTeam);
 
-const createGroup = 'CREATE-GROUP';
-export const createGroupAction = genericAction(createGroup);
+const createTeam = 'CREATE-TEAM';
+export const createTeamAction = genericAction(createTeam);
 
-const deleteGroup = 'DELETE-GROUP';
-export const deleteGroupAction = genericAction(deleteGroup);
+const deleteTeam = 'DELETE-TEAM';
+export const deleteTeamAction = genericAction(deleteTeam);
+
+
+
+
+
+const getTag = 'GET-TAG';
+export const getTagAction = genericAction(getTag);
+
+const editTag = 'EDIT-TAG';
+export const editTagAction = genericAction(editTag);
+
+const createTag = 'CREATE-TAG';
+export const createTagAction = genericAction(createTag);
+
+const deleteTag = 'DELETE-TAG';
+export const deleteTagAction = genericAction(deleteTag);
+
+
+
+const getSize = 'GET-SIZE';
+export const getSizeAction = genericAction(getSize);
+
+const editSize = 'EDIT-SIZE';
+export const editSizeAction = genericAction(editSize);
+
+const createSize = 'CREATE-SIZE';
+export const createSizeAction = genericAction(createSize);
+
+const deleteSize = 'DELETE-SIZE';
+export const deleteSizeAction = genericAction(deleteSize);
+
+
+
+const getColor = 'GET-COLOR';
+export const getColorAction = genericAction(getColor);
+
+const editColor = 'EDIT-COLOR';
+export const editColorAction = genericAction(editColor);
+
+const createColor = 'CREATE-COLOR';
+export const createColorAction = genericAction(createColor);
+
+const deleteColor = 'DELETE-COLOR';
+export const deleteColorAction = genericAction(deleteColor);
+
+
+
+const getCollection = 'GET-COLLECTION';
+export const getCollectionAction = genericAction(getCollection);
+
+const editCollection = 'EDIT-COLLECTION';
+export const editCollectionAction = genericAction(editCollection);
+
+const createCollection = 'CREATE-COLLECTION';
+export const createCollectionAction = genericAction(createCollection);
+
+const deleteCollection = 'DELETE-COLLECTION';
+export const deleteCollectionAction = genericAction(deleteCollection);
+
+
+
+const getCategory = 'GET-CATEGORY';
+export const getCategoryAction = genericAction(getCategory);
+
+const editCategory = 'EDIT-CATEGORY';
+export const editCategoryAction = genericAction(editCategory);
+
+const createCategory = 'CREATE-CATEGORY';
+export const createCategoryAction = genericAction(createCategory);
+
+const deleteCategory = 'DELETE-CATEGORY';
+export const deleteCategoryAction = genericAction(deleteCategory);

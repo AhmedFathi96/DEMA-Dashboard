@@ -15,7 +15,8 @@ import {infoReducer} from './info-reducer';
 import {valueReducer} from './values-reducer';
 import {historyReducer} from './history-reducer';
 import {visionsReducer} from './vision-reducer';
-import {groupReducer} from './group-reducer';
+import {TeamReducer} from './team-reducer';
+import {itemInfoReducer} from './itemInfo-reducer'
 
 const persistAuth: PersistConfig = {
     key: "authReducer",
@@ -37,7 +38,8 @@ export const rootReducer = combineReducers({
     infoReducer,
     historyReducer,
     visionsReducer,
-    groupReducer
+    TeamReducer,
+    itemInfoReducer
 });
 
 type rootReducer = typeof rootReducer;
