@@ -11,7 +11,7 @@ const actionType = union(createGalleryImage);
 function* createGalleryImageSaga(action: typeof actionType.actions) {
     try {
         const token = yield select(selectToken);
-        console.log('===>' , action.payload)
+
         const res = yield call(createGalleryImageAPI, token , action.payload);
         yield put(createGalleryImageSucceeded(res.data.data));
         store.addNotification({

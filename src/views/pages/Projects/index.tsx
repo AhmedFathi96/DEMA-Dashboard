@@ -70,7 +70,6 @@ const Projects: React.FC = () => {
 
   const handleSubmit = (e:any) =>{
     e.preventDefault();
-    console.log('Event' , e.target.value);
     let data = new FormData();
     data.append('arabic_header', e.target.arabic_header.value);
     data.append('arabic_sub_header', e.target.arabic_sub_header.value);
@@ -81,7 +80,6 @@ const Projects: React.FC = () => {
     data.append('order', e.target.order.value);
     data.append('project_img', e.target.project_img.files[0]);
 
-    console.log('Obj =====>' , obj);
 
     if(is_editing){
       dispatch(editProject({data:data , id:obj._id === undefined? '':obj._id}));

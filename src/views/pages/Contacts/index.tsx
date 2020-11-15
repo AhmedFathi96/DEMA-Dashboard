@@ -58,14 +58,14 @@ const Contacts: React.FC = () => {
   };
   const handleSubmit = (e:any) =>{
     e.preventDefault();
-    console.log('Event' , e.target.value);
+    
     const data = {
       email:e.target.email.value ,
       name:e.target.name.value,
       message:e.target.message.value,
       phone:e.target.phone.value
   }
-    console.log('Obj =====>' , obj);
+    
     dispatch(createContact(data));
     toggleModal();
     

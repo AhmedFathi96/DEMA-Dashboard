@@ -14,7 +14,7 @@ function* getProductAdditionalInfosSaga(action: typeof actionType.actions) {
     try {
         const token = yield select(selectToken);
         const res = yield call(getProductAdditionalInfoAPI, token , action.payload);
-        console.log('Additional===>' , res.data.data)
+
         yield put(getProductAdditionalInfoSucceeded(res.data.data));
     } catch (e) {
         yield put(getProductAdditionalInfoFailed(e));

@@ -54,7 +54,7 @@ const Admins: React.FC = () => {
 
   const handleSubmit = (e:any) =>{
     e.preventDefault();
-    console.log('Event' , e.target.value);
+    
     const data = {
       email:e.target.email.value ,
       name:e.target.name.value,
@@ -62,7 +62,7 @@ const Admins: React.FC = () => {
       phone:e.target.phone.value,
       role:e.target.role.value
   }
-    console.log('Obj =====>' , obj);
+    c
 
     if(is_editing){
       dispatch(editAdmin({data:{...data , _id:obj._id === undefined? '':obj._id} , id:obj._id === undefined? '':obj._id}));

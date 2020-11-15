@@ -68,7 +68,7 @@ const Collections: React.FC = () => {
 
   const handleSubmit = (e:any) =>{
     e.preventDefault();
-    console.log('Event' , e.target.value);
+   
     let data = new FormData();
     data.append('arabic_name', e.target.arabic_name.value);
     data.append('arabic_sub_header', e.target.arabic_sub_header.value);

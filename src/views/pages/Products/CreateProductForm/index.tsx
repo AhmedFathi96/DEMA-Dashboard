@@ -150,7 +150,6 @@ const CreateProductForm: React.FC = (props) => {
     }
     const handleProductAdditionalInfoSubmit = (e:any) =>{
         e.preventDefault();
-        console.log('Event' , e.target.value);
         
         let data = {
             english_name: e.target.english_name.value,
@@ -163,7 +162,6 @@ const CreateProductForm: React.FC = (props) => {
     }
     const handleProductImagesSubmit = (e:any) =>{
         e.preventDefault();
-        console.log('Event' , e.target.value);
         let data = new FormData();
         data.append('item', createdProduct);
         data.append('img', e.target.img.files[0]);

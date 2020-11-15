@@ -78,7 +78,7 @@ const About: React.FC = () => {
 
     const handleSubmit = (e:any) =>{
         e.preventDefault();
-        console.log('Event' , e.target.value);
+      
         let data = {
             english_header: e.target.english_header.value,
             english_sub_header:  e.target.english_sub_header.value,

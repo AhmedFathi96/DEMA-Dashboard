@@ -83,7 +83,6 @@ const ItemInfo: React.FC = () => {
   };
   const handleSubmit = (e:any) =>{
     e.preventDefault();
-    console.log('Event' , e.target.value);
     let TagsData: ITag= {
       arabic_name: e.target.arabic_name.value,
       english_name:  e.target.english_name.value,
@@ -109,7 +108,6 @@ const ItemInfo: React.FC = () => {
   };
   const handleSizeSubmit = (e:any) =>{
     e.preventDefault();
-    console.log('Event' , e.target.value);
     let sizeData: ISize= {
       name:  e.target.name.value,
     }
@@ -131,7 +129,6 @@ const ItemInfo: React.FC = () => {
   };
   const handleColorSubmit = (e:any) =>{
     e.preventDefault();
-    console.log('Event' , e.target.value);
     let ColorData: IColor= {
       arabic_name: e.target.arabic_name.value,
       english_name:  e.target.english_name.value,
@@ -158,7 +155,6 @@ const ItemInfo: React.FC = () => {
   };
   const handleBadgeSubmit = (e:any) =>{
     e.preventDefault();
-    console.log('Event' , e.target.value);
     let BadgeData: IBadge= {
       arabic_name: e.target.arabic_name.value,
       english_name:  e.target.english_name.value,

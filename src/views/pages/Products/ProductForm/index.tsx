@@ -211,7 +211,6 @@ const ProductForm: React.FC<RouteComponentProps> = (props) => {
             productAdditionalInfo: productAdditionalInfo,
             status: e.target.status.value
         };
-        console.log("Data ===>",data)
 
         dispatch(editProduct({data: data , id: pro._id}));  
     }
@@ -227,10 +226,8 @@ const ProductForm: React.FC<RouteComponentProps> = (props) => {
         selectedAdditionalInfo._id?dispatch(editProductAdditionalInfo({id:selectedAdditionalInfo._id , data:data})):dispatch(createProductItemAdditionalInfo(data))
 
     }
-    React.useEffect( ()=>{console.log('=========>',selectedAdditionalInfo._id)},[selectedAdditionalInfo._id])
     const handleProductImagesSubmit = (e:any) =>{
         e.preventDefault();
-        console.log('Event' , e.target.value);
         let data = new FormData();
         data.append('item', createdProduct || pro._id);
         data.append('img', e.target.img.files[0]);

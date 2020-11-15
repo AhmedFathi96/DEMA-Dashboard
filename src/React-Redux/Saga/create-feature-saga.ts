@@ -11,7 +11,7 @@ const actionType = union(createFeature);
 function* createFeatureSaga(action: typeof actionType.actions) {
     try {
         const token = yield select(selectToken);
-        console.log('===>' , action.payload)
+
         const res = yield call(createFeatureAPI, token , action.payload);
         yield put(createFeatureSucceeded(res.data.data));
         store.addNotification({

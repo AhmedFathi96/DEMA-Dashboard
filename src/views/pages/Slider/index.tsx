@@ -62,7 +62,6 @@ const Slider: React.FC = () => {
   const handleSubmit = (e:any) =>{
     e.preventDefault();
     let data = new FormData();
-    console.log('Obj =====>' , e.target.sale.value );
 
     data.append('english_header', e.target.english_header.value);
     data.append('english_sub_header', e.target.english_sub_header.value);

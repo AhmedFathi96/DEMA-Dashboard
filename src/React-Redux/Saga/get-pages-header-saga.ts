@@ -10,7 +10,7 @@ function* getPagesHeadersSaga() {
     try {
         const token = yield select(selectToken);
         const res = yield call(getPagesHeader, token);
-        console.log('===>' , res.data.data[0])
+
         yield put(getPagesHeadersSucceeded(res.data.data[0]));
     } catch (e) {
         yield put(getPagesHeadersFailed(e));

@@ -57,7 +57,7 @@ const Category: React.FC = () => {
 
   const handleSubmit = (e:any) =>{
     e.preventDefault();
-    console.log('Event' , e.target.value);
+    
     let data = new FormData();
     data.append('english_name', e.target.english_name.value);
     data.append('arabic_name', e.target.arabic_name.value);

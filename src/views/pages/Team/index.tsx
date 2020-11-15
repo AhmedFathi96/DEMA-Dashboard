@@ -69,7 +69,6 @@ const Team: React.FC = () => {
 
   const handleSubmit = (e:any) =>{
     e.preventDefault();
-    console.log('Event' , e.target.value);
     let data = new FormData();
 
     data.append('arabic_job', e.target.arabic_job.value);

@@ -33,9 +33,7 @@ const Products: React.FC = () => {
   useEffect(()=>{
       dispatch(getProducts())
   } ,[])
-  useEffect(()=>{
-    console.log('Products ====>' , products);
-} ,[products])
+
   
     return (
       <>

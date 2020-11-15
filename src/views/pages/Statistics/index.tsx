@@ -67,7 +67,6 @@ const Statistics: React.FC = () => {
 
   const handleSubmit = (e:any) =>{
     e.preventDefault();
-    console.log('Event' , e.target.value);
     let data = new FormData();
 
     // arabic_desc:'',
@@ -78,8 +77,6 @@ const Statistics: React.FC = () => {
 
     data.append('english_desc', e.target.english_desc.value);
     data.append('statistic_img', e.target.statistic_img.files[0]);
-
-    console.log('Obj =====>' , obj);
 
     if(is_editing){
       dispatch(editStatistic({data:data , id:obj._id === undefined? '':obj._id}));

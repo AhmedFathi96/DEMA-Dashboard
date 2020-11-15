@@ -10,7 +10,7 @@ function* getProductsSaga() {
     try {
         const token = yield select(selectToken);
         const res = yield call(getProductsAPI, token);
-        console.log('Products ===>' , res.data.data)
+
         yield put(getProductsSucceeded(res.data.data));
     } catch (e) {
         yield put(getProductsFailed(e));
