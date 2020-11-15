@@ -12,7 +12,7 @@ function* deleteGalleryImageSaga(action: typeof actionType.actions) {
     try {
         const token = yield select(selectToken);
         const res = yield call(deleteGalleryImageAPI, token , action.payload);
-        console.log('===>' , res.data.data)
+        
         yield put(deleteGalleryImageSucceeded(res.data.data));
         store.addNotification({
             title: "Success Message!",

@@ -10,7 +10,7 @@ function* getHistorySaga() {
     try {
         const token = yield select(selectToken);
         const res = yield call(getHistory, token);
-        console.log('===>' , res.data.data)
+        
         yield put(getHistorySucceeded(res.data.data));
     } catch (e) {
         yield put(getHistoryFailed(e));

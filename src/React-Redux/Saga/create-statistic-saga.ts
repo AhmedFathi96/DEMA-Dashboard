@@ -12,7 +12,7 @@ function* createStatisticSaga(action: typeof actionType.actions) {
     try {
         const token = yield select(selectToken);
         const res = yield call(createStatisticAPI, token , action.payload);
-        console.log('===>' , res.data.data)
+        
         yield put(createStatisticSucceeded(res.data.data));
         store.addNotification({
             title: "Success Message!",

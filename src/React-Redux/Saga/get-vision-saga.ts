@@ -10,7 +10,7 @@ function* getVisionsSaga() {
     try {
         const token = yield select(selectToken);
         const res = yield call(getVisions, token);
-        console.log('===>' , res.data.data)
+        
         yield put(getVisionSucceeded(res.data.data));
     } catch (e) {
         yield put(getVisionFailed(e));

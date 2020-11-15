@@ -25,7 +25,7 @@ export const galleryImagesReducer = reducer<IState>(
     on(editGalleryImageSucceeded, (state, { payload }) => {
         const oldData = state.GalleryImages.filter((date) => date._id !== payload._id);
         const newGalleryImage = payload;
-        console.log('gallery' , oldData,newGalleryImage)
+     
         return{
             ...state,
             GalleryImages: [...oldData, newGalleryImage],

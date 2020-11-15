@@ -10,7 +10,7 @@ function* getColorsSaga() {
     try {
         const token = yield select(selectToken);
         const res = yield call(getColors, token);
-        console.log('===>' , res.data.data)
+        
         yield put(getColorsSucceeded(res.data.data));
     } catch (e) {
         yield put(getColorsFailed(e));

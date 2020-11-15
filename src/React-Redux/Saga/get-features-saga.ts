@@ -10,7 +10,7 @@ function* getFeaturesSaga() {
     try {
         const token = yield select(selectToken);
         const res = yield call(getFeatures, token);
-        console.log('===>' , res.data.data)
+        
         yield put(getFeaturesSucceeded(res.data.data));
     } catch (e) {
         yield put(getFeaturesFailed(e));

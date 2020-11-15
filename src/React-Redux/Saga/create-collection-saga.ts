@@ -12,7 +12,7 @@ function* createCollectionSaga(action: typeof actionType.actions) {
     try {
         const token = yield select(selectToken);
         const res = yield call(createCollectionAPI, token , action.payload);
-        console.log('===>' , res.data.data)
+        
         yield put(createCollectionSucceeded(res.data.data));
         store.addNotification({
             title: "Success Message!",

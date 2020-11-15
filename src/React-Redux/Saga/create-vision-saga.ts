@@ -12,7 +12,7 @@ function* createVisionSaga(action: typeof actionType.actions) {
     try {
         const token = yield select(selectToken);
         const res = yield call(createVisionAPI, token , action.payload);
-        console.log('===>' , res.data.data)
+        
         yield put(createVisionSucceeded(res.data.data));
         store.addNotification({
             title: "Success Message!",

@@ -8,7 +8,6 @@ import Login from './views/pages/examples/Login';
 function App() {
     const { is_logging , token} = useSelect(state => state.authReducer);
 
-    React.useEffect( ()=> {console.log('out there ========>' , is_logging , token)} , [token]);
 
     return (
         <div className="App">

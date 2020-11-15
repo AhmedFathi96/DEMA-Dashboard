@@ -12,7 +12,7 @@ function* createBadgeSaga(action: typeof actionType.actions) {
     try {
         const token = yield select(selectToken);
         const res = yield call(createBadgeAPI, token , action.payload);
-        console.log('===>' , res.data.data)
+        
         yield put(createBadgeSucceeded(res.data.data));
         store.addNotification({
             title: "Success Message!",

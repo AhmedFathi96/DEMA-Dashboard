@@ -12,7 +12,7 @@ function* createProjectSaga(action: typeof actionType.actions) {
     try {
         const token = yield select(selectToken);
         const res = yield call(createProjectAPI, token , action.payload);
-        console.log('===>' , res.data.data)
+        
         yield put(createProjectSucceeded(res.data.data));
         store.addNotification({
             title: "Success Message!",

@@ -10,7 +10,7 @@ function* getSizesSaga() {
     try {
         const token = yield select(selectToken);
         const res = yield call(getSizes, token);
-        console.log('===>' , res.data.data)
+        
         yield put(getSizesSucceeded(res.data.data));
     } catch (e) {
         yield put(getSizesFailed(e));

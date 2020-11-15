@@ -10,7 +10,7 @@ function* getCollectionsSaga() {
     try {
         const token = yield select(selectToken);
         const res = yield call(getCollections, token);
-        console.log('===>' , res.data.data)
+        
         yield put(getCollectionsSucceeded(res.data.data));
     } catch (e) {
         yield put(getCollectionsFailed(e));

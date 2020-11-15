@@ -12,7 +12,7 @@ function* deleteFeatureSaga(action: typeof actionType.actions) {
     try {
         const token = yield select(selectToken);
         const res = yield call(deleteFeatureAPI, token , action.payload);
-        console.log('===>' , res.data.data)
+        
         yield put(deleteFeatureSucceeded(res.data.data));
         store.addNotification({
             title: "Success Message!",

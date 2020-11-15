@@ -12,7 +12,7 @@ function* editValueSaga(action: typeof actionType.actions) {
     try {
         const token = yield select(selectToken);
         const res = yield call(editValueAPI, token , action.payload.data,action.payload.id);
-        console.log('===>' , res.data.data)
+        
         yield put(editValueSucceeded(res.data.data));
         store.addNotification({
             title: "Success Message!",

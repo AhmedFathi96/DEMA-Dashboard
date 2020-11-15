@@ -10,7 +10,7 @@ function* getValuesSaga() {
     try {
         const token = yield select(selectToken);
         const res = yield call(getValues, token);
-        console.log('===>' , res.data.data)
+        
         yield put(getValuesSucceeded(res.data.data));
     } catch (e) {
         yield put(getValuesFailed(e));

@@ -10,7 +10,7 @@ function* getTeamsSaga() {
     try {
         const token = yield select(selectToken);
         const res = yield call(getTeams, token);
-        console.log('===>' , res.data.data)
+        
         yield put(getTeamsSucceeded(res.data.data));
     } catch (e) {
         yield put(getTeamsFailed(e));

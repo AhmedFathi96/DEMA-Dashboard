@@ -12,7 +12,7 @@ function* editCategorySaga(action: typeof actionType.actions) {
     try {
         const token = yield select(selectToken);
         const res = yield call(editACategoryAPI, token , action.payload.data,action.payload.id);
-        console.log('===>' , res.data.data)
+        
         yield put(editCategorySucceeded(res.data.data));
         store.addNotification({
             title: "Success Message!",

@@ -12,7 +12,7 @@ function* editSliderItemSaga(action: typeof actionType.actions) {
     try {
         const token = yield select(selectToken);
         const res = yield call(editSliderItemAPI, token , action.payload.data,action.payload.id);
-        console.log('===>' , res.data.data)
+        
         yield put(editSliderItemSucceeded(res.data.data));
         store.addNotification({
             title: "Success Message!",

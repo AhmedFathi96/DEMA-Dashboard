@@ -10,7 +10,7 @@ function* getStatisticsSaga() {
     try {
         const token = yield select(selectToken);
         const res = yield call(getStatistics, token);
-        console.log('===>' , res.data.data)
+        
         yield put(getStatisticsSucceeded(res.data.data));
     } catch (e) {
         yield put(getStatisticsFailed(e));

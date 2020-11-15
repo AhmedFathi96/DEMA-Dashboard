@@ -13,7 +13,7 @@ function* editProductSaga(action: typeof actionType.actions) {
     try {
         const token = yield select(selectToken);
         const res = yield call(editProductAPI, token , action.payload.data,action.payload.id);
-        console.log('===>' , res.data.data)
+        
         yield put(editProductSucceeded(res.data.data));
         store.addNotification({
             title: "Success Message!!",

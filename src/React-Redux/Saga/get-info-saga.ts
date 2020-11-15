@@ -9,7 +9,7 @@ function* getInfoSaga() {
     try {
         const token = yield select(selectToken);
         const res = yield call(getInfoAPI, token);
-        console.log('===>' , res.data.data)
+        
         yield put(getInfoSucceeded(res.data.data[0]));
     } catch (e) {
         yield put(getInfoFailed(e));

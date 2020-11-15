@@ -12,7 +12,7 @@ function* deleteCategorySaga(action: typeof actionType.actions) {
     try {
         const token = yield select(selectToken);
         const res = yield call(deleteCategoryAPI, token , action.payload);
-        console.log('===>' , res.data.data)
+        
         yield put(deleteCategorySucceeded(res.data.data));
         store.addNotification({
             title: "Success Message!",

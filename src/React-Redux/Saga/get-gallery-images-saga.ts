@@ -10,7 +10,7 @@ function* getGalleryImageSaga() {
     try {
         const token = yield select(selectToken);
         const res = yield call(getGalleryImage, token);
-        console.log('===>' , res.data.data)
+        
         yield put(getGalleryImageSucceeded(res.data.data));
     } catch (e) {
         yield put(getGalleryImageFailed(e));

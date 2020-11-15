@@ -12,7 +12,7 @@ function* editColorSaga(action: typeof actionType.actions) {
     try {
         const token = yield select(selectToken);
         const res = yield call(editColorAPI, token , action.payload.data,action.payload.id);
-        console.log('===>' , res.data.data)
+        
         yield put(editColorSucceeded(res.data.data));
         store.addNotification({
             title: "Success Message!",

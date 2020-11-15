@@ -10,7 +10,7 @@ function* getBadgesSaga() {
     try {
         const token = yield select(selectToken);
         const res = yield call(getBadges, token);
-        console.log('===>' , res.data.data)
+        
         yield put(getBadgesSucceeded(res.data.data));
     } catch (e) {
         yield put(getBadgesFailed(e));

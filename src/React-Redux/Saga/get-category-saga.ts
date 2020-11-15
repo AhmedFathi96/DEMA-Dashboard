@@ -10,7 +10,7 @@ function* getCategoriesSaga() {
     try {
         const token = yield select(selectToken);
         const res = yield call(getCategories, token);
-        console.log('===>' , res.data.data)
+        
         yield put(getCategoriesSucceeded(res.data.data));
     } catch (e) {
         yield put(getCategoriesFailed(e));

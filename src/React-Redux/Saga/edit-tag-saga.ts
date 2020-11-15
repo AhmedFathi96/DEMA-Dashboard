@@ -12,7 +12,7 @@ function* editTagSaga(action: typeof actionType.actions) {
     try {
         const token = yield select(selectToken);
         const res = yield call(editTagAPI, token , action.payload.data,action.payload.id);
-        console.log('===>' , res.data.data)
+        
         yield put(editTagSucceeded(res.data.data));
         store.addNotification({
             title: "Success Message!",

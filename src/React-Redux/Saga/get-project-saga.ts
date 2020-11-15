@@ -10,7 +10,7 @@ function* getProjectsSaga() {
     try {
         const token = yield select(selectToken);
         const res = yield call(getProjects, token);
-        console.log('===>' , res.data.data)
+        
         yield put(getProjectSucceeded(res.data.data));
     } catch (e) {
         yield put(getProjectFailed(e));

@@ -70,7 +70,6 @@ const Vision: React.FC = () => {
 
   const handleSubmit = (e:any) =>{
     e.preventDefault();
-    console.log('Event' , e.target.value);
     let data = new FormData();
     data.append('arabic_header', e.target.arabic_header.value);
     data.append('arabic_sub_header', e.target.arabic_sub_header.value);
@@ -80,7 +79,6 @@ const Vision: React.FC = () => {
     data.append('order', e.target.order.value);
     data.append('vision_img', e.target.vision_img.files[0]);
 
-    console.log('Obj =====>' , obj);
 
     if(is_editing){
       dispatch(editVision({data:data , id:obj._id === undefined? '':obj._id}));

@@ -10,7 +10,7 @@ function* getTagsSaga() {
     try {
         const token = yield select(selectToken);
         const res = yield call(getTags, token);
-        console.log('===>' , res.data.data)
+        
         yield put(getTagsSucceeded(res.data.data));
     } catch (e) {
         yield put(getTagsFailed(e));

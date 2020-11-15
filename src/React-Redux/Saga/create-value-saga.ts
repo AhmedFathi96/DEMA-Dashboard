@@ -12,7 +12,7 @@ function* createValueSaga(action: typeof actionType.actions) {
     try {
         const token = yield select(selectToken);
         const res = yield call(createValueAPI, token , action.payload);
-        console.log('===>' , res.data.data)
+        
         yield put(createValueSucceeded(res.data.data));
         store.addNotification({
             title: "Success Message!",

@@ -10,7 +10,7 @@ function* getSliderItemsSaga() {
     try {
         const token = yield select(selectToken);
         const res = yield call(getSliderItems, token);
-        console.log('===>' , res.data.data)
+        
         yield put(getSliderItemsSucceeded(res.data.data));
     } catch (e) {
         yield put(getSliderItemsFailed(e));

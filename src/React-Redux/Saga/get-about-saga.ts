@@ -8,7 +8,7 @@ function* getAboutSaga() {
     try {
         const token = yield select(selectToken);
         const res = yield call(getAbout, token);
-        console.log('===>' , res.data.data)
+        
         yield put(getAboutSucceeded(res.data.data));
     } catch (e) {
         yield put(getAboutFailed(e));

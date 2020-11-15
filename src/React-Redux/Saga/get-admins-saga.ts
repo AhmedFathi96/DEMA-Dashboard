@@ -10,7 +10,7 @@ function* getAdminsSaga() {
     try {
         const token = yield select(selectToken);
         const res = yield call(getAdmins, token);
-        console.log('===>' , res.data.data)
+        
         yield put(getAdminsSucceeded(res.data.data));
     } catch (e) {
         yield put(getAdminsFailed(e));

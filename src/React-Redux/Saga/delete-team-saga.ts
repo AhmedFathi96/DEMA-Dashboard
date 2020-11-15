@@ -12,7 +12,7 @@ function* deleteTeamSaga(action: typeof actionType.actions) {
     try {
         const token = yield select(selectToken);
         const res = yield call(deleteTeamAPI, token , action.payload);
-        console.log('===>' , res.data.data)
+        
         yield put(deleteTeamSucceeded(res.data.data));
         store.addNotification({
             title: "Success Message!",
