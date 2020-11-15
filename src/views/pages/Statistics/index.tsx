@@ -236,7 +236,7 @@ const Statistics: React.FC = () => {
                               }
                             )
                           
-                          }} className="btn-icon btn-2" color="default" type="button">
+                          }} className={`btn-icon btn-2`} color="default" type="button">
                               <span className="btn-inner--text">Create new Statistic</span>
                               <span className="btn-inner--icon">
                                 <i className="ni ni-fat-add"></i>
@@ -261,9 +261,9 @@ const Statistics: React.FC = () => {
                               />
                               <CardBody>
                                 <CardTitle>
-                                <div style={{display:'flex' , alignItems:'center', justifyContent:'space-between'}}>                                  
-                                  <div style={{display:'flex'}}>
-                                          <Button className="btn-icon btn-2" color="success" type="button" onClick={()=>{
+                                <div>                                  
+                                  <div style={{display:'flex' , alignItems:'center', justifyContent:'flex-end'}}>
+                                          <Button className={`btn-icon btn-2 ${styles.default.editBtn}`} color="success" type="button" onClick={()=>{
                                             setObj({
                                                 _id: item._id,
                                                 count:item.count,
@@ -275,11 +275,12 @@ const Statistics: React.FC = () => {
                                             toggleModal()
                                           
                                           }}>
+                                            Edit
                                             <span className="btn-inner--icon">
                                               <i className="ni ni-ungroup" />
                                             </span>
                                           </Button>
-                                          <Button className="btn-icon btn-2" color="danger" type="button"
+                                          <Button className={`btn-icon btn-2 ${styles.default.deleteBtn}`} color="danger" type="button"
                                             onClick={()=>{
                                               toggleNotificationModal()
                                               setObj({
@@ -290,6 +291,7 @@ const Statistics: React.FC = () => {
                                             })
                                             }}
                                           >
+                                            Delete
                                             <span className="btn-inner--icon">
                                             <i className="ni ni-fat-remove"></i>
                                             </span>
@@ -300,55 +302,15 @@ const Statistics: React.FC = () => {
                                 </CardTitle>
                                 <CardText>
                                 <div className="accordion">
-                                <Card className="card-plain">
-                                    <CardHeader
-                                      role="tab"
-                                      onClick={() => collapsesToggle(`collapse${item._id}`)}
-                                      aria-expanded={openedCollapsesArr.includes(
-                                        `collapse${item._id}`
-                                      )}
-                                    >
-                                      <h5 className="mb-0"> {item.english_desc} Statistic Number</h5>
-                                    </CardHeader>
-                                    <Collapse
-                                      role="tabpanel"
-                                      isOpen={openedCollapsesArr.includes(`collapse${item._id}`)}
-                                    >
-                                      <CardBody>
-                                          <div className={styles.default.infoWrapper}>
-                                            <span>Statistic Number: {item.count}</span>
-                                          
-                                      
-                                          </div>
-                                          
-                                      </CardBody>
-                                    </Collapse>
-                                  </Card>
-                                <Card className="card-plain">
-                                  <CardHeader
-                                    role="tab"
-                                    onClick={() => collapsesToggle(`collapse${item._id}2`)}
-                                    aria-expanded={openedCollapsesArr.includes(
-                                      `collapse${item._id}2`
-                                    )}
-                                  >
-                                    <h5 className="mb-0">Description</h5>
-                                  </CardHeader>
-                                  <Collapse
-                                    role="tabpanel"
-                                    isOpen={openedCollapsesArr.includes(`collapse${item._id}2`)}
-                                  >
-                                    <CardBody>
-                                        <div className={styles.default.infoWrapper}>
-                                            <span>English Description: {item.english_desc}</span>
-                                        </div>  
-                                        <div className={styles.default.infoWrapper}>
-                                            <span>Arabic Description: {item.arabic_desc}</span>
-                                        </div>  
-                                    </CardBody>
-                                  </Collapse>
-                                </Card>
-  
+
+                                    <div className={styles.default.infoWrapper}>
+                                        <span><b>Statistic Number:</b>: {item.count}</span>
+                                    </div>
+                                    <div className={styles.default.infoWrapper}>
+                                        <span><b>English Description:</b> {item.english_desc}</span>
+                                        <span><b>Arabic Description:</b> {item.arabic_desc}</span>
+                                    </div>
+                        
                                 </div>
   
                                 

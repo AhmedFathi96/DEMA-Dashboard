@@ -39,8 +39,8 @@ const routes = [
   },
   {
 
-    icon: "ni ni-collection text-primary",
-    path: "itemInfo",
+    icon: "ni ni-ungroup text-primary",
+    path: "item-info",
     name: "ItemInfo",
     miniName: "I",
     component: ItemInfo,
@@ -57,7 +57,7 @@ const routes = [
   },
   {
 
-    icon: "ni ni-collection text-primary",
+    icon: "ni ni-basket text-primary",
     path: "category",
     name: "Categories",
     miniName: "I",
@@ -67,7 +67,7 @@ const routes = [
   
   {
 
-    icon: "ni ni-chart-bar-32 text-primary",
+    icon: "ni ni-diamond text-primary",
     path: "Products",
     name: "Products",
     miniName: "p",
@@ -87,7 +87,7 @@ const routes = [
 
   {
 
-    icon: "ni ni-chart-bar-32 text-primary",
+    icon: "ni ni-circle-08 text-primary",
     path: "team",
     name: "Team",
     miniName: "F",

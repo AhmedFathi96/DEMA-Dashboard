@@ -13,6 +13,11 @@ export const getColors = (token:string) =>{
     const headers = { Authorization: `Bearer ${token}` };
     return axios.get(Requests.getColorURL , {headers});
 }
+export const getBadges = (token:string) =>{
+    const headers = { Authorization: `Bearer ${token}` };
+    return axios.get(Requests.getBadgeURL , {headers});
+}
+
 export const getSizes = (token:string) =>{
     const headers = { Authorization: `Bearer ${token}` };
     return axios.get(Requests.getSizeURL , {headers});

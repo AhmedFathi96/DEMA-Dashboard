@@ -4,3 +4,28 @@
 .img{
     height: 356px !important;
 }
+
+
+.editBtn{
+    background-color: #ffffff !important;
+    border: 1px solid #ffffff;
+    color: #1a1a1a;
+}
+.editBtn:hover{
+    background-color: #1a1a1a !important;
+    border: 1px solid #1a1a1a;
+    color: #ffffff;
+}
+.deleteBtn{
+    background-color: #f5365c !important;
+    border: 1px solid #f5365c;
+    color: #ffffff;
+}
+.deleteBtn:hover{
+    background-color: #ffffff !important;
+    border: 1px solid #f5365c;
+    color: #f5365c;
+}
+.editBtn span{
+    padding-left: 0.3rem;
+}

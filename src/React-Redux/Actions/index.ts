@@ -289,6 +289,21 @@ export const deleteColorAction = genericAction(deleteColor);
 
 
 
+const getBadge = 'GET-BADGE';
+export const getBadgeAction = genericAction(getBadge);
+
+const editBadge = 'EDIT-BADGE';
+export const editBadgeAction = genericAction(editBadge);
+
+const createBadge = 'CREATE-BADGE';
+export const createBadgeAction = genericAction(createBadge);
+
+const deleteBadge = 'DELETE-BADGE';
+export const deleteBadgeAction = genericAction(deleteBadge);
+
+
+
+
 const getCollection = 'GET-COLLECTION';
 export const getCollectionAction = genericAction(getCollection);
 
@@ -314,3 +329,37 @@ export const createCategoryAction = genericAction(createCategory);
 
 const deleteCategory = 'DELETE-CATEGORY';
 export const deleteCategoryAction = genericAction(deleteCategory);
+
+
+
+
+
+
+
+const createProduct = 'CREATE-PRODUCT';
+export const createProductAction = genericAction(createProduct);
+const getProducts = 'GET-PRODUCT';
+export const getProductsAction = genericAction(getProducts);
+const editProduct = 'UPDATE-PRODUCT';
+export const editProductAction = genericAction(editProduct);
+const deleteProduct = 'DELETE-PRODUCT';
+export const deleteProductAction = genericAction(deleteProduct);
+
+
+const createProductAdditionalInfo = 'CREATE-PRODUCT-ADDITIONAL-INFO';
+export const createProductAdditionalInfoAction = genericAction(createProductAdditionalInfo);
+const getProductAdditionalInfo = 'GET-PRODUCT-ADDITIONAL-INFO';
+export const getProductAdditionalInfoAction = genericAction(getProductAdditionalInfo);
+const editProductAdditionalInfo = 'UPDATE-PRODUCT-ADDITIONAL-INFO';
+export const editProductAdditionalInfoAction = genericAction(editProductAdditionalInfo);
+const deleteProductAdditionalInfo = 'DELETE-PRODUCT-ADDITIONAL-INFO';
+export const deleteProductAdditionalInfoAction = genericAction(deleteProductAdditionalInfo);
+
+const createProductImage = 'CREATE-PRODUCT-IMAGE';
+export const createProductImageAction = genericAction(createProductImage);
+const getProductImage = 'GET-PRODUCT-IMAGES';
+export const getProductImageAction = genericAction(getProductImage);
+const editProductImage = 'UPDATE-PRODUCT-IMAGES';
+export const editProductImageAction = genericAction(editProductImage);
+const deleteProductImage = 'DELETE-PRODUCT-IMAGES';
+export const deleteProductImageAction = genericAction(deleteProductImage);

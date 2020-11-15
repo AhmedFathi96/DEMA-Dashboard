@@ -1,161 +1,187 @@
 
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { IProduct } from "../../../../lib";
 import * as styles from './styles.module.css';
 // reactstrap components
-import { Alert, Badge, UncontrolledCarousel } from "reactstrap";
+import { Alert, Badge, Col, Row, UncontrolledCarousel } from "reactstrap";
+import { RouteComponentProps } from "react-router-dom";
+import { useSelect } from "../../../../helper";
+import { useDispatch } from "react-redux";
+import { getProductAdditionalInfo, getProductImage } from "../../../../React-Redux/Actions/product-action";
 
 
-const items = [
-    {
-        src: require("../../../../assets/img/theme/img-1-1200x1000.jpg"),
-        altText: '',
-        caption: '',
-        header: ''
-    },
-    {
-        src: require("../../../../assets/img/theme/img-2-1200x1000.jpg"),
-        altText: '',
-        caption: '',
-        header: ''
-    }
-];
-const ProductDetails: React.FC<IProduct> = (props) => {
-    const {
-        arabic_name,collections,arabic_mini_description,category,color,discount_percentage,
-        english_mini_description,english_name,price_after_discount,price_before_discount,size,tag,productAdditionalInfo} = props;
+
+const ProductDetails: React.FC<RouteComponentProps> = (props) => {
+    const d = (props.location.state) as any;
+    const pro = d.pro;
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(getProductAdditionalInfo(pro._id));
+        dispatch(getProductImage(pro._id))
+    },[])
+    const { productAdditionalInfo,productImages} = useSelect( (state)=>state.productReducer)
+    const items = useMemo( ()=>{
+        return productImages.map( (it)=>{
+            return{
+                src: `http://localhost:6100/api/itemImages/item/${pro._id}/image/${it}/view`,
+                altText: '',
+                caption: '',
+                header: ''
+            }
+        })
+    } , [productImages,pro._id])
 
     return (
-        <>
+        <div className={styles.default.wrapper}>
             <div className={styles.default.productDetailsWrapper}>
                 <div className={styles.default.leftSlider}>
                     <UncontrolledCarousel items={items} />
                 </div>
                 <div className={styles.default.rightContent}>
-                <Alert color="secondary">
-                    <strong>English Name</strong> {english_name}
-                    <br />
-                    <strong>Arabic Name</strong> {arabic_name}
-                </Alert>
-
-                <Alert color="secondary">
-                    <strong>Price Before Discount</strong> {price_before_discount}
-                    <br />
-                    <strong>Price After Discount</strong> {price_after_discount}
-                    <br />
-                    <strong>Discount Percentage</strong> {discount_percentage}
-                </Alert>
-
-                <Alert color="secondary">
-                    <strong>English Mini Description</strong> {english_mini_description}
-                    <br />
-                    <strong>Arabic Mini Description</strong> {arabic_mini_description}
-                </Alert>
-
-                <h1 className="display-4">Product Info</h1>
-                <Alert color="secondary">
-                    <strong>Available Colors</strong> 
-
-                    {
-                        color.map(item =>
-                            <>
-                                <Badge
-                                    className="badge-default"
-                                >
-                                    {item.english_name} | {item.arabic_name}
-                                </Badge>
-                            </>
-                        )
-                    }
-                    <br />
-
-                    <strong>Available Sizes</strong> 
-
-                    {
-                        size.map(item =>
-                            <>
-                                <Badge
-                                    className="badge-default"
-                                >
-                                    {item.name}
-                                </Badge>
-                            </>
-                        )
-                    }
-                    <br />
-
-                    <strong>Item Tags</strong> 
-
-                    {
-                        tag.map(item =>
-                            <>
-                                <Badge
-                                    className="badge-default"
-                                >
-                                    {item.english_name} | {item.arabic_name}
-                                </Badge>
-                            </>
-                        )
-                    }
-                    <br />
-
-                </Alert>
-
-                <h1 className="display-4">Item Related Collections</h1>
-                <Alert color="secondary">
-                    {
-                        collections.map(item =>
-                            <>
-                                <Badge
-                                    className="badge-default"
-                                >
-                                    {item.english_name} | {item.arabic_name}
-                                </Badge>
-                                <br />
-                            </>
-                        )
-                    }
                     
+                <Alert className="alert-default">
+                    <strong>Item {pro._id} Main Info</strong>
+                </Alert>
+                <Alert color="secondary">
+                    <div className={styles.default.infoWrapper}>
+                        <span><b>English Name:</b>: {pro.english_name}</span>
+                        <span><b>Arabic Name:</b>: {pro.arabic_name}</span>
+                    </div>
                 </Alert>
 
-                <h1 className="display-4">Item Related Categories</h1>
                 <Alert color="secondary">
-                    {
-                        category.map(item =>
-                            <>
-                                <Badge
-                                    className="badge-default"
-                                >
-                                    {item.english_name} | {item.arabic_name}
-                                </Badge>
-                                <br />
-                            </>
-                        )
-                    }
-                    
+                    <div className={styles.default.infoWrapper}>
+                        <span><b>Price Before Discount:</b>: {pro.price_before_discount}EGP</span>
+                        <span><b>Price After Discount:</b>: {pro.price_after_discount}  EGP</span>
+                        <span><b>Discount Percentage:</b>: {pro.discount_percentage}EGP</span>
+                    </div>
                 </Alert>
 
-                <h1 className="display-4">Product Additional Info</h1>
                 <Alert color="secondary">
-                    {
-                        productAdditionalInfo.map(item =>
-                            <>
-                                <strong>{item.english_name} | {item.arabic_name}</strong> {item.content}
-                                <br />
-                            </>
-                        )
-                    }
+                    <div className={styles.default.infoWrapper}>
+                        <span><b>English Mini Description:</b>: {pro.english_mini_description}</span>
+                        <span><b>Arabic Mini Description:</b>: {pro.arabic_mini_description}</span>
+                    </div>
                     
                 </Alert>
 
                 
+                
 
-            
-        
+ 
+                
 
+                
+                
                 </div>
             </div>
-        </>
+            <br />
+            <Row>
+                <Col>
+                    <Alert color="secondary">
+                        <h1 className="display-4">Product Info</h1>
+                        <strong>Available Colors</strong> 
+
+                        {
+                            pro.color.map((item:any) =>
+                                <>
+                                    <div className={styles.default.infoWrapper}>
+                                        <span><b>Name</b>: {item.english_name} {item.arabic_name}</span>
+                                    </div>
+                                </>
+                            )
+                        }
+                        <br />
+
+                    </Alert>
+                    <Alert color="secondary" >
+                            <h1 className="display-4">Item  Available Tags</h1>
+                            {
+                                pro.tag.map((item:any) =>
+                                    <>
+                                        <div className={styles.default.infoWrapper}>
+                                            <span><b>Name</b>: {item.english_name} {item.arabic_name}</span>
+                                        </div>
+                                
+                                    </>
+                                )
+                            }
+                    </Alert>
+                    <Alert color="secondary" >
+                        <h1 className="display-4">Item  Available Sizes</h1>
+                        {
+                            pro.size.map((item:any) =>
+                                <>
+                                        <div className={styles.default.infoWrapper}>
+                                            <span><b>Name</b>: {item.name}</span>
+                                        </div>
+
+                                </>
+                            )
+                        }
+                    </Alert>
+                    
+                    <br />
+                    <Alert color="secondary" >
+                        <h1 className="display-4">Item  Related Categories</h1>
+                        {
+                            pro.category.map((item:any) =>
+                                <>
+                                    <div className={styles.default.infoWrapper}>
+                                        <span><b>Name</b>: {item.english_name} {item.arabic_name}</span>
+                                    </div>
+                                    <br />
+                                </>
+                            )
+                        }
+                        
+                    </Alert>
+                    <Alert color="secondary" >
+                        <h1 className="display-4">Item Related Collections</h1>
+                        {
+                            pro.collections.map((item:any) =>
+                                <>
+                                    <div className={styles.default.infoWrapper}>
+                                        <span><b>Name</b>: {item.english_name} {item.arabic_name}</span>
+                                    </div>
+                            
+                                    <br />
+                                </>
+                            )
+                        }
+                        
+                    </Alert>
+
+    
+            
+                </Col>
+                <Col>
+                    <Alert color="secondary" >
+                        <h1 className="display-4">Product Additional Info</h1>
+                        {
+                            
+                            productAdditionalInfo.map((item:any) =>
+                                <>
+                                    <div className={styles.default.infoWrapper}>
+                                        <span><b>Name</b>: {item.english_name} {item.arabic_name}</span>
+                                        <span><b>Content</b>: {item.content}</span>
+                                    </div>
+                        
+                                    <br />
+                                </>
+                            )
+                            
+                        }
+                        
+                    </Alert>
+            
+                </Col>
+            </Row>
+         
+          
+                            
+       
+        </div>
         );
     
 }

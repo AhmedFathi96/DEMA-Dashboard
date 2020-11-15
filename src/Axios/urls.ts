@@ -85,9 +85,22 @@ export const getInfoURL =  `${server}api/info/get-info`;
 
 
 
-// export const createFeatureURL = `${server}api/Features/create-Feature`;
-// export const editFeatureURL = (id:string) => `${server}api/Features/update-Feature/${id}`;
-// export const deleteFeatureURL = (id:string) => `${server}api/Features/delete-Feature/${id}`;
+export const createProductItemURL = `${server}api/item/create-item`;
+export const getProductsItemURL = `${server}api/item/get-items`;
+export const updateProductItemURL= (id:string) => `${server}api/item/update-item/${id}`;
+export const deleteProductItemURL= (id:string) => `${server}api/item/delete-item/${id}`;
+
+export const createProductItemImageURL =  `${server}api/itemImages/add-itemImage`;
+export const getProductItemImagesURL = (id:string) =>  `${server}api/itemImages/get-itemImages/${id}`;
+export const updateProductItemImageURL= (id:string) => `${server}api/itemImages/update-itemImages/${id}`;
+export const deleteProductItemImageURL= (id:string) => `${server}api/itemImages/delete-itemImages/${id}`;
+
+
+export const createProductItemAdditionalInfoURL = `${server}api/itemAdditionalInfo/create-itemAdditionalInfo`;
+export const getProductItemAdditionalInfoURL = (id:string) => `${server}api/itemAdditionalInfo/get-itemAdditionalInfo/${id}`;
+export const updateProductItemAdditionalInfoURL= (id:string) => `${server}api/itemAdditionalInfo/update-itemAdditionalInfo/${id}`;
+export const deleteProductItemAdditionalInfoURL= (id:string) => `${server}api/itemAdditionalInfo/delete-itemAdditionalInfo/${id}`;
+
 
 
 export const getHistoryURL = `${server}api/history/get-history`;
@@ -121,6 +134,14 @@ export const getColorURL = `${server}api/color/get-colors`;
 export const createColorURL = `${server}api/color/create-color`;
 export const deleteColorURL = (id:string) => `${server}api/color/delete-color/${id}`;
 export const editColorURL = (id:string) => `${server}api/color/update-color/${id}`;
+
+
+
+export const getBadgeURL = `${server}api/badge/get-badges`;
+export const createBadgeURL = `${server}api/badge/create-badge`;
+export const deleteBadgeURL = (id:string) => `${server}api/badge/delete-badge/${id}`;
+export const editBadgeURL = (id:string) => `${server}api/badge/update-badge/${id}`;
+
 
 export const getCollectionURL = `${server}api/collection/get-collections`;
 export const createCollectionURL = `${server}api/collection/add-collection`;

@@ -2,3 +2,21 @@
     left: 20px;
     bottom: 6rem;
 }
+.editBtn{
+    background-color: transparent !important;
+    border: 1px solid #1a1a1a;
+    color: #1a1a1a;
+}
+.editBtn:hover{
+    background-color: #1a1a1a !important;
+    border: 1px solid #1a1a1a;
+    color: #ffffff;
+}
+.editBtn span{
+    padding-left: 0.3rem;
+}
+.deleteBtn:hover{
+    background-color: transparent !important;
+    border: 1px solid #f5365c;
+    color: #f5365c;
+}

@@ -4,7 +4,7 @@ import { ISliderItem } from "../../lib/index";
 
 interface IState{
     SliderItems: ISliderItem[];
-    slider_is_loading:boolean
+    slider_is_loading:boolean;
     
 }
 

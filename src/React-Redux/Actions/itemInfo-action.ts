@@ -3,8 +3,9 @@ import { getCategoryAction , getCollectionAction , getColorAction , getSizeActio
         createCategoryAction , createCollectionAction,createColorAction, createSizeAction,createTagAction,
         editCategoryAction, editColorAction,editCollectionAction , editSizeAction,editTagAction,
         deleteCategoryAction, deleteColorAction,deleteCollectionAction , deleteSizeAction,deleteTagAction,
+        getBadgeAction,editBadgeAction,deleteBadgeAction,createBadgeAction
     } from '.';
-import { ICategory , ICollection , IColor , ISize , ITag} from '../../lib/index';
+import { IBadge, ICategory , ICollection , IColor , ISize , ITag} from '../../lib/index';
 
 
 export const getCategories = action(getCategoryAction.requested);
@@ -61,6 +62,25 @@ export const editColorFailed = action(editColorAction.rejected, payload<Error>()
 export const deleteColor = action(deleteColorAction.requested, payload<string>());
 export const deleteColorSucceeded = action(deleteColorAction.fulfilled , payload<IColor>());
 export const deleteColorFailed = action(deleteColorAction.rejected, payload<Error>());
+
+
+
+
+export const getBadges = action(getBadgeAction.requested);
+export const getBadgesSucceeded = action(getBadgeAction.fulfilled , payload<IBadge[]>());
+export const getBadgesFailed = action(getBadgeAction.rejected, payload<Error>());
+
+export const createBadge = action(createBadgeAction.requested, payload<IBadge>());
+export const createBadgeSucceeded = action(createBadgeAction.fulfilled , payload<IBadge>());
+export const createBadgeFailed = action(createBadgeAction.rejected, payload<Error>());
+
+export const editBadge = action(editBadgeAction.requested, payload<{data:IBadge , id: string}>());
+export const editBadgeSucceeded = action(editBadgeAction.fulfilled , payload<IBadge>());
+export const editBadgeFailed = action(editBadgeAction.rejected, payload<Error>());
+
+export const deleteBadge = action(deleteBadgeAction.requested, payload<string>());
+export const deleteBadgeSucceeded = action(deleteBadgeAction.fulfilled , payload<IBadge>());
+export const deleteBadgeFailed = action(deleteBadgeAction.rejected, payload<Error>());
 
 
 

@@ -242,7 +242,7 @@ const Team: React.FC = () => {
                               }
                             )
                           
-                          }} className="btn-icon btn-2" color="default" type="button">
+                          }} className={`btn-icon btn-2`} color="default" type="button">
                               <span className="btn-inner--text">Create new Team</span>
                               <span className="btn-inner--icon">
                                 <i className="ni ni-fat-add"></i>
@@ -267,9 +267,9 @@ const Team: React.FC = () => {
                               />
                               <CardBody>
                                 <CardTitle>
-                                <div style={{display:'flex' , alignItems:'center', justifyContent:'space-between'}}>                                  
-                                  <div style={{display:'flex'}}>
-                                          <Button className="btn-icon btn-2" color="success" type="button" onClick={()=>{
+                                <div>                                  
+                                  <div style={{display:'flex' , alignItems:'center', justifyContent:'flex-end'}}>
+                                          <Button className={`btn-icon btn-2 ${styles.default.editBtn}`} color="success" type="button" onClick={()=>{
                                             setObj({
                                                 _id: item._id,
                                                 arabic_job:item.arabic_job,
@@ -283,11 +283,12 @@ const Team: React.FC = () => {
                                             toggleModal()
                                           
                                           }}>
+                                            Edit
                                             <span className="btn-inner--icon">
                                               <i className="ni ni-ungroup" />
                                             </span>
                                           </Button>
-                                          <Button className="btn-icon btn-2" color="danger" type="button"
+                                          <Button className={`btn-icon btn-2 ${styles.default.deleteBtn}`} color="danger" type="button"
                                             onClick={()=>{
                                               toggleNotificationModal()
                                               setObj({
@@ -300,6 +301,7 @@ const Team: React.FC = () => {
                                             })
                                             }}
                                           >
+                                            Delete
                                             <span className="btn-inner--icon">
                                             <i className="ni ni-fat-remove"></i>
                                             </span>
@@ -310,55 +312,15 @@ const Team: React.FC = () => {
                                 </CardTitle>
                                 <CardText>
                                 <div className="accordion">
-                                <Card className="card-plain">
-                                    <CardHeader
-                                      role="tab"
-                                      onClick={() => collapsesToggle(`collapse${item._id}`)}
-                                      aria-expanded={openedCollapsesArr.includes(
-                                        `collapse${item._id}`
-                                      )}
-                                    >
-                                      <h5 className="mb-0"> {item.english_name} Team Member</h5>
-                                    </CardHeader>
-                                    <Collapse
-                                      role="tabpanel"
-                                      isOpen={openedCollapsesArr.includes(`collapse${item._id}`)}
-                                    >
-                                      <CardBody>
-                                        <div className={styles.default.infoWrapper}>
-                                            <span>English Name: {item.english_name}</span>
-                                        </div>  
-                                        <div className={styles.default.infoWrapper}>
-                                            <span>Arabic Name: {item.arabic_name}</span>
-                                        </div>  
-                                    </CardBody>
-                                    </Collapse>
-                                  </Card>
-                                <Card className="card-plain">
-                                  <CardHeader
-                                    role="tab"
-                                    onClick={() => collapsesToggle(`collapse${item._id}2`)}
-                                    aria-expanded={openedCollapsesArr.includes(
-                                      `collapse${item._id}2`
-                                    )}
-                                  >
-                                    <h5 className="mb-0">{item.english_name} Job</h5>
-                                  </CardHeader>
-                                  <Collapse
-                                    role="tabpanel"
-                                    isOpen={openedCollapsesArr.includes(`collapse${item._id}2`)}
-                                  >
-                                    <CardBody>
-                                        <div className={styles.default.infoWrapper}>
-                                            <span>English Job: {item.english_job}</span>
-                                        </div>  
-                                        <div className={styles.default.infoWrapper}>
-                                            <span>Arabic Job: {item.arabic_job}</span>
-                                        </div>  
-                                    </CardBody>
-                                  </Collapse>
-                                </Card>
-  
+                                    <div className={styles.default.infoWrapper}>
+                                        <span><b>English Name:</b>: {item.english_name}</span>
+                                        <span><b>Arabic Name:</b>: {item.arabic_name}</span>
+                                    </div>
+                                    <div className={styles.default.infoWrapper}>
+                                        <span><b>English Job:</b> {item.english_job}</span>
+                                        <span><b>Arabic Job:</b> {item.arabic_job}</span>
+                                    </div>
+                        
                                 </div>
   
                                 

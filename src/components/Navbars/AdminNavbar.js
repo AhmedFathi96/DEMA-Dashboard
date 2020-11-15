@@ -186,7 +186,7 @@ class AdminNavbar extends React.Component {
                               </div>
                             </div>
                             <p className="text-sm mb-0">
-                              A new issue has been reported for Argon.
+                              A new issue has been reported for DEMA.
                             </p>
                           </div>
                         </Row>

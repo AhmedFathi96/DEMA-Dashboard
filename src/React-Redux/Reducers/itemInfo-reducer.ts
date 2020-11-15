@@ -3,8 +3,8 @@ import { getCategoriesSucceeded , createCategorySucceeded  , editCategorySucceed
 getCollectionsSucceeded , createCollectionSucceeded,editCollectionSucceeded,deleteCollectionSucceeded,
 getColorsSucceeded, createColorSucceeded, editColorSucceeded,deleteColorSucceeded,
 getSizesSucceeded, createSizeSucceeded, editSizeSucceeded,deleteSizeSucceeded,
-getTagsSucceeded, createTagSucceeded, editTagSucceeded,deleteTagSucceeded,} from "../Actions/itemInfo-action";
-import {  ICategory, ICollection , IColor, ISize , ITag } from "../../lib/index";
+getTagsSucceeded, createTagSucceeded, editTagSucceeded,deleteTagSucceeded, getBadgesSucceeded, createBadgeSucceeded, editBadgeSucceeded, deleteBadgeSucceeded,} from "../Actions/itemInfo-action";
+import {  IBadge, ICategory, ICollection , IColor, ISize , ITag } from "../../lib/index";
 
 interface IState{
     categories: ICategory[];
@@ -22,6 +22,8 @@ interface IState{
     tags: ITag[];
     tags_is_loading:boolean;
     
+    badges: IBadge[];
+    badges_is_loading:boolean;
 }
 
 export const itemInfoReducer = reducer<IState>(
@@ -35,7 +37,9 @@ export const itemInfoReducer = reducer<IState>(
         sizes:[],
         sizes_is_loading:false,
         tags:[],
-        tags_is_loading:false
+        tags_is_loading:false,
+        badges:[],
+        badges_is_loading:false
     },
     on(getCategoriesSucceeded, (state, { payload }) => ({
         ...state,
@@ -124,6 +128,36 @@ export const itemInfoReducer = reducer<IState>(
         }
     }),
 
+
+
+    on(getBadgesSucceeded, (state, { payload }) => ({
+        ...state,
+        badges: payload,
+        badges_is_loading: true
+    })),
+    on(createBadgeSucceeded, (state, { payload }) => ({
+        ...state,
+        badges: [...state.badges , payload],
+        badges_is_loading: true
+    })),
+    on(editBadgeSucceeded, (state, { payload }) => {
+        const oldData = state.badges.filter((SliderItem) => SliderItem._id !== payload._id);
+        const newAbout = payload;
+        return{
+            ...state,
+            badges: [...oldData, newAbout],
+            badges_is_loading: true
+        }
+    }),
+    on(deleteBadgeSucceeded, (state, { payload }) => {
+        const oldData = state.badges.filter((SliderItem) => SliderItem._id !== payload._id);
+        return{
+            ...state,
+            badges: [...oldData],
+            badges_is_loading: true
+        }
+    }),
+    
 
     on(getSizesSucceeded, (state, { payload }) => ({
         ...state,

@@ -22,6 +22,14 @@ export const deleteColorAPI = (token:string , id:string) =>{
             headers,
         });
 }
+export const deleteBadgeAPI = (token:string , id:string) =>{
+    const headers = { Authorization: `Bearer ${token}` };
+    return axios.delete(Requests.deleteBadgeURL(id),
+        {
+            headers,
+        });
+}
+
 export const deleteSizeAPI = (token:string , id:string) =>{
     const headers = { Authorization: `Bearer ${token}` };
     return axios.delete(Requests.deleteSizeURL(id),

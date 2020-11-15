@@ -36,15 +36,24 @@ const About: React.FC = () => {
     const [is_editing , setEditing] = useState(false)
     const [obj , setObj] = useState<IAboutSection>({
         _id:'',
-        header: About[0]?.header,
-        sub_header: About[0]?.sub_header,
-        content: About[0]?.content,
-        mission: About[0]?.mission,
-        mission_content: About[0]?.mission_content,
-        vision: About[0]?.vision,
-        vision_content: About[0]?.vision_content,
-        goal: About[0]?.goal,
-        goal_content: About[0]?.goal_content
+        english_header: About[0]?.english_header,
+        english_sub_header: About[0]?.english_sub_header,
+        english_content: About[0]?.english_content,
+        english_mission: About[0]?.english_mission,
+        english_mission_content: About[0]?.english_mission_content,
+        english_vision: About[0]?.english_vision,
+        english_vision_content: About[0]?.english_vision_content,
+        english_goal: About[0]?.english_goal,
+        english_goal_content: About[0]?.english_goal_content,
+        arabic_content:About[0]?.arabic_content,
+        arabic_goal:About[0]?.arabic_goal,
+        arabic_goal_content:About[0]?.arabic_goal_content,
+        arabic_header:About[0]?.arabic_header,
+        arabic_mission:About[0]?.arabic_mission,
+        arabic_mission_content:About[0]?.arabic_mission_content,
+        arabic_sub_header:About[0]?.arabic_sub_header,
+        arabic_vision:About[0]?.arabic_vision,
+        arabic_vision_content:About[0]?.arabic_vision_content
 
     })
 
@@ -71,15 +80,25 @@ const About: React.FC = () => {
         e.preventDefault();
         console.log('Event' , e.target.value);
         let data = {
-            header: e.target.header.value,
-            sub_header:  e.target.sub_header.value,
-            content:  e.target.content.value,
-            mission: e.target.mission.value,
-            mission_content: e.target.mission_content.value,
-            vision: e.target.vision.value,
-            vision_content: e.target.vision_content.value,
-            goal: e.target.goal.value,
-            goal_content:e.target.goal_content.value,
+            english_header: e.target.english_header.value,
+            english_sub_header:  e.target.english_sub_header.value,
+            english_content:  e.target.english_content.value,
+            english_mission: e.target.english_mission.value,
+            english_mission_content: e.target.english_mission_content.value,
+            english_vision: e.target.english_vision.value,
+            english_vision_content: e.target.english_vision_content.value,
+            english_goal: e.target.english_goal.value,
+            english_goal_content:e.target.english_goal_content.value,
+
+            arabic_header: e.target.arabic_header.value,
+            arabic_sub_header:  e.target.arabic_sub_header.value,
+            arabic_content:  e.target.arabic_content.value,
+            arabic_mission: e.target.arabic_mission.value,
+            arabic_mission_content: e.target.arabic_mission_content.value,
+            arabic_vision: e.target.arabic_vision.value,
+            arabic_vision_content: e.target.arabic_vision_content.value,
+            arabic_goal: e.target.arabic_goal.value,
+            arabic_goal_content:e.target.arabic_goal_content.value,
         }
 
         if(is_editing){
@@ -106,7 +125,7 @@ const About: React.FC = () => {
             >
             <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">
-                {obj?.header === ''? 'Create About': 'Edit About'}
+                {obj?.english_header === ''? 'Create About': 'Edit About'}
                 </h5>
                 <button
                 aria-label="Close"
@@ -125,16 +144,32 @@ const About: React.FC = () => {
                 <strong>Header Main Info</strong>
                 </Alert>
                 <FormGroup>
-                    <label className="form-control-label" htmlFor="example-text-input">Header</label>
-                    <Input id="header" name="header" defaultValue={obj.header} placeholder="English Header ..." type="text" />
+                    <label className="form-control-label" htmlFor="example-text-input">English Header</label>
+                    <Input id="english_header" name="english_header" defaultValue={obj.english_header} placeholder="English Header ..." type="text" />
                 </FormGroup>
                 <FormGroup>
-                    <label className="form-control-label" htmlFor="example-text-input">Sub Header</label>
-                    <Input id="sub_header" name="sub_header" defaultValue={obj.sub_header} placeholder="Sub Header ..." type="text" />
+                    <label className="form-control-label" htmlFor="example-text-input">Arabic Header</label>
+                    <Input id="arabic_header" name="arabic_header" defaultValue={obj.arabic_header} placeholder="Arabic Header ..." type="text" />
+                </FormGroup>
+
+
+                <FormGroup>
+                    <label className="form-control-label" htmlFor="example-text-input">English Sub Header</label>
+                    <Input id="english_sub_header" name="english_sub_header" defaultValue={obj.english_sub_header} placeholder="English Sub Header ..." type="text" />
                 </FormGroup>
                 <FormGroup>
-                    <label className="form-control-label" htmlFor="example-text-input">Content</label>
-                    <Input id="content" rows="5" name="content" defaultValue={obj.content} placeholder="content ..." type="textarea" />
+                    <label className="form-control-label" htmlFor="example-text-input">Arabic Sub Header</label>
+                    <Input id="arabic_sub_header" name="arabic_sub_header" defaultValue={obj.arabic_sub_header} placeholder="Arabic Sub Header ..." type="text" />
+                </FormGroup>
+
+
+                <FormGroup>
+                    <label className="form-control-label" htmlFor="example-text-input">English Content</label>
+                    <Input id="english_content" rows="5" name="english_content" defaultValue={obj.english_content} placeholder="English content ..." type="textarea" />
+                </FormGroup>
+                <FormGroup>
+                    <label className="form-control-label" htmlFor="example-text-input">Arabic Content</label>
+                    <Input id="arabic_content" rows="5" name="arabic_content" defaultValue={obj.arabic_content} placeholder="Arabic content ..." type="textarea" />
                 </FormGroup>
 
                 <Alert className="alert-default">
@@ -142,25 +177,45 @@ const About: React.FC = () => {
                 </Alert>
 
                 <FormGroup>
-                    <label className="form-control-label" htmlFor="example-text-input">Mission</label>
-                    <Input id="mission" rows="5" name="mission" defaultValue={obj.mission} placeholder="Mission ..." type="text" />
+                    <label className="form-control-label" htmlFor="example-text-input">English Mission</label>
+                    <Input id="english_mission" rows="5" name="english_mission" defaultValue={obj.english_mission} placeholder="English Mission ..." type="text" />
                 </FormGroup>
                 <FormGroup>
-                    <label className="form-control-label" htmlFor="example-text-input">Mission Content</label>
-                    <Input id="mission_content" rows="5" name="mission_content" defaultValue={obj.mission_content} placeholder="Mission content ..." type="textarea" />
+                    <label className="form-control-label" htmlFor="example-text-input">Arabic Mission</label>
+                    <Input id="arabic_mission" rows="5" name="arabic_mission" defaultValue={obj.arabic_mission} placeholder="Arabic Mission ..." type="text" />
                 </FormGroup>
+
+
+                <FormGroup>
+                    <label className="form-control-label" htmlFor="example-text-input">English Mission Content</label>
+                    <Input id="english_mission_content" rows="5" name="english_mission_content" defaultValue={obj.english_mission_content} placeholder="English Mission content ..." type="textarea" />
+                </FormGroup>
+                <FormGroup>
+                    <label className="form-control-label" htmlFor="example-text-input">Arabic Mission Content</label>
+                    <Input id="arabic_mission_content" rows="5" name="arabic_mission_content" defaultValue={obj.arabic_mission_content} placeholder="Arabic Mission content ..." type="textarea" />
+                </FormGroup>
+
 
                 <Alert className="alert-default">
                 <strong>Vision Main Info</strong>
                 </Alert>
 
                 <FormGroup>
-                    <label className="form-control-label" htmlFor="example-text-input">Vision</label>
-                    <Input id="vision" rows="5" name="vision" defaultValue={obj.vision} placeholder="Vision ..." type="text" />
+                    <label className="form-control-label" htmlFor="example-text-input">English Vision</label>
+                    <Input id="english_vision" rows="5" name="english_vision" defaultValue={obj.english_vision} placeholder="English Vision ..." type="text" />
                 </FormGroup>
                 <FormGroup>
-                    <label className="form-control-label" htmlFor="example-text-input">Vision Content</label>
-                    <Input id="vision_content" rows="5" name="vision_content" defaultValue={obj.vision_content} placeholder="Vision content ..." type="textarea" />
+                    <label className="form-control-label" htmlFor="example-text-input">Arabic Vision</label>
+                    <Input id="arabic_vision" rows="5" name="arabic_vision" defaultValue={obj.arabic_vision} placeholder="Arabic Vision ..." type="text" />
+                </FormGroup>
+
+                <FormGroup>
+                    <label className="form-control-label" htmlFor="example-text-input">English Vision Content</label>
+                    <Input id="english_vision_content" rows="5" name="english_vision_content" defaultValue={obj.english_vision_content} placeholder="English Vision content ..." type="textarea" />
+                </FormGroup>
+                <FormGroup>
+                    <label className="form-control-label" htmlFor="example-text-input">Arabic Vision Content</label>
+                    <Input id="vision_content" rows="5" name="arabic_vision_content" defaultValue={obj.arabic_vision_content} placeholder="Arabic Vision content ..." type="textarea" />
                 </FormGroup>
 
                 <Alert className="alert-default">
@@ -168,12 +223,21 @@ const About: React.FC = () => {
                 </Alert>
 
                 <FormGroup>
-                    <label className="form-control-label" htmlFor="example-text-input">Goal</label>
-                    <Input id="goal" rows="5" name="goal" defaultValue={obj.goal} placeholder="Goal ..." type="text" />
+                    <label className="form-control-label" htmlFor="example-text-input">English Goal</label>
+                    <Input id="english_goal" rows="5" name="english_goal" defaultValue={obj.english_goal} placeholder="English Goal ..." type="text" />
+                </FormGroup>
+                <FormGroup>
+                    <label className="form-control-label" htmlFor="example-text-input">Arabic Goal</label>
+                    <Input id="arabic_goal" rows="5" name="arabic_goal" defaultValue={obj.arabic_goal} placeholder="Arabic Goal ..." type="text" />
+                </FormGroup>
+
+                <FormGroup>
+                    <label className="form-control-label" htmlFor="example-text-input">Goal Content</label>
+                    <Input id="english_goal_content" rows="5" name="english_goal_content" defaultValue={obj.english_goal_content} placeholder="English Goal content ..." type="textarea" />
                 </FormGroup>
                 <FormGroup>
                     <label className="form-control-label" htmlFor="example-text-input">Goal Content</label>
-                    <Input id="goal_content" rows="5" name="goal_content" defaultValue={obj.goal_content} placeholder="Goal content ..." type="textarea" />
+                    <Input id="arabic_goal_content" rows="5" name="arabic_goal_content" defaultValue={obj.arabic_goal_content} placeholder="Arabic Goal content ..." type="textarea" />
                 </FormGroup>
 
                 <div className="modal-footer">
@@ -214,15 +278,24 @@ const About: React.FC = () => {
                                 setObj(
                                     { 
                                     _id:About[0]._id,
-                                    header: About[0]?.header,
-                                    sub_header: About[0]?.sub_header,
-                                    content: About[0]?.content,
-                                    mission: About[0]?.mission,
-                                    mission_content: About[0]?.mission_content,
-                                    vision: About[0]?.vision,
-                                    vision_content: About[0]?.vision_content,
-                                    goal: About[0]?.goal,
-                                    goal_content: About[0]?.goal_content
+                                    english_header: About[0]?.english_header,
+                                    english_sub_header: About[0]?.english_sub_header,
+                                    english_content: About[0]?.english_content,
+                                    english_mission: About[0]?.english_mission,
+                                    english_mission_content: About[0]?.english_mission_content,
+                                    english_vision: About[0]?.english_vision,
+                                    english_vision_content: About[0]?.english_vision_content,
+                                    english_goal: About[0]?.english_goal,
+                                    english_goal_content: About[0]?.english_goal_content,
+                                    arabic_content:About[0]?.arabic_content,
+                                    arabic_goal:About[0]?.arabic_goal,
+                                    arabic_goal_content:About[0]?.arabic_goal_content,
+                                    arabic_header:About[0]?.arabic_header,
+                                    arabic_mission:About[0]?.arabic_mission,
+                                    arabic_mission_content:About[0]?.arabic_mission_content,
+                                    arabic_sub_header:About[0]?.arabic_sub_header,
+                                    arabic_vision:About[0]?.arabic_vision,
+                                    arabic_vision_content:About[0]?.arabic_vision_content
                                     
                                     }
                                 )
@@ -248,134 +321,54 @@ const About: React.FC = () => {
                                 <Card className={styles.default.card}>
 
                                     <CardBody>
-                                        <Row>
-                                            <div className="col">
-                                            <CardTitle className="text-uppercase text-muted mb-0">
-                                                {item.header}
-                                            </CardTitle>
-                                            </div>
-                                            <Col className="col-auto">
-                                            <div className="icon icon-shape bg-white text-dark rounded-circle shadow">
-                                                <i className="ni ni-active-40" />
-                                            </div>
-                                            </Col>
-                                        </Row>
-                                        {/* <Row>
-                                            <Col lg="5">
-                                                <span className="h2 font-weight-bold mb-0">
-                                                    <p className="text-uppercase text-muted">About Sub header:</p>{item.sub_header}
-                                                </span>
-                                                <br />
-                                                <span className="h2 font-weight-bold mb-0">
-                                                    <p className="text-uppercase text-muted">About Content:</p>{item.content}
-                                                </span>
-                                                <br />
-                                                <span className="h2 font-weight-bold mb-0">
-                                                    <p className="text-uppercase text-muted">Vision header:</p>{item.vision}
-                                                </span>
-                                                <br />
-                                                <span className="h2 font-weight-bold mb-0">
-                                                    <p className="text-uppercase text-muted">Vision Content:</p>{item.vision_content}
-                                                </span>
-                                            </Col>
-                                        </Row>
-                                         */}
+                                        
                                             <div className="accordion">
-                                                <Card className="card-plain">
-                                                    <CardHeader
-                                                    role="tab"
-                                                    onClick={() => collapsesToggle(`collapse${item._id}`)}
-                                                    aria-expanded={openedCollapsesArr.includes(
-                                                        `collapse${item._id}`
-                                                    )}
-                                                    >
-                                                    <h5 className="mb-0"> About header</h5>
-                                                    </CardHeader>
-                                                    <Collapse
-                                                    role="tabpanel"
-                                                    isOpen={openedCollapsesArr.includes(`collapse${item._id}`)}
-                                                    >
-                                                    <CardBody>
-                                                        <div className={styles.default.infoWrapper}>
-                                                            <span><b>About Header</b>: {item.sub_header}</span>
-                                                            <span><b>About Content</b>: {item.content   }</span>
-                                                        
-                                            
-                                                        </div>
-                                                        
-                                                    </CardBody>
-                                                    </Collapse>
-                                                </Card>
-                                                <Card className="card-plain">
-                                                <CardHeader
-                                                    role="tab"
-                                                    onClick={() => collapsesToggle(`collapse${item._id}2`)}
-                                                    aria-expanded={openedCollapsesArr.includes(
-                                                    `collapse${item._id}2`
-                                                    )}
-                                                >
-                                                    <h5 className="mb-0">Vision header</h5>
-                                                </CardHeader>
-                                                <Collapse
-                                                    role="tabpanel"
-                                                    isOpen={openedCollapsesArr.includes(`collapse${item._id}2`)}
-                                                >
-                                                    <CardBody>
-                                                        <div className={styles.default.infoWrapper}>
-                                                            <span><b>Vision Header</b>: {item.vision_content}</span>
-                                                            <span><b>Vision Content</b>: {item.vision_content}</span>
-                                                        
-                                                        </div>  
-                                                    </CardBody>
-                                                </Collapse>
-                                                </Card>
-                                                <Card className="card-plain">
-                                                <CardHeader
-                                                    role="tab"
-                                                    onClick={() => collapsesToggle(`collapse${item._id}3`)}
-                                                    aria-expanded={openedCollapsesArr.includes(
-                                                    `collapse${item._id}2`
-                                                    )}
-                                                >
-                                                    <h5 className="mb-0">Mission header</h5>
-                                                </CardHeader>
-                                                <Collapse
-                                                    role="tabpanel"
-                                                    isOpen={openedCollapsesArr.includes(`collapse${item._id}3`)}
-                                                >
-                                                    <CardBody>
-                                                        <div className={styles.default.infoWrapper}>
-                                                            <span><b>Mission Header</b>: {item.mission}</span>
-                                                            <span><b>Mission Content</b>: {item.mission_content}</span>
-                                                        
-                                                        </div>  
-                                                    </CardBody>
-                                                </Collapse>
-                                                </Card>
-                                                <Card className="card-plain">
-                                                <CardHeader
-                                                    role="tab"
-                                                    onClick={() => collapsesToggle(`collapse${item._id}4`)}
-                                                    aria-expanded={openedCollapsesArr.includes(
-                                                    `collapse${item._id}2`
-                                                    )}
-                                                >
-                                                    <h5 className="mb-0">Goal header</h5>
-                                                </CardHeader>
-                                                <Collapse
-                                                    role="tabpanel"
-                                                    isOpen={openedCollapsesArr.includes(`collapse${item._id}4`)}
-                                                >
-                                                    <CardBody>
-                                                        <div className={styles.default.infoWrapper}>
-                                                            <span><b>Goal Header</b>: {item.goal}</span>
-                                                            <span><b>Goal Content</b>: {item.goal_content}</span>
-                                                        
-                                                        </div>  
-                                                    </CardBody>
-                                                </Collapse>
-                                                </Card>
-                
+                                                <Alert className="alert-default">
+                                                    <strong>{item.english_header} | {item.arabic_header} Main Info</strong>
+                                                </Alert>
+                                                <div className={styles.default.infoWrapper}>
+                                                    <span><b>English Header</b>: {item.english_sub_header}</span>
+                                                    <span><b>Arabic Content</b>: {item.arabic_sub_header}</span>
+                                                </div>
+                                                <div className={styles.default.infoWrapper}>
+                                                    <span><b>English Header</b>: {item.english_content}</span>
+                                                    <span><b>Arabic Content</b>: {item.arabic_content}</span>
+                                                </div>
+                                                <Alert className="alert-default">
+                                                    <strong>Vision Info</strong>
+                                                </Alert>
+                                                <div className={styles.default.infoWrapper}>
+                                                    <span><b>English Header</b>: {item.english_vision}</span>
+                                                    <span><b>Arabic Header</b>: {item.arabic_vision}</span>
+                                                </div>  
+                                                <div className={styles.default.infoWrapper}>
+                                                    <span><b>English Content</b>: {item.english_vision_content}</span>
+                                                    <span><b>Arabic Content</b>: {item.arabic_vision_content}</span>
+                                                </div>  
+                                                <Alert className="alert-default">
+                                                    <strong>Mission Info</strong>
+                                                </Alert>
+                                                <div className={styles.default.infoWrapper}>
+                                                    <span><b>English Header</b>: {item.english_mission}</span>
+                                                    <span><b>Arabic Header</b>: {item.arabic_mission}</span>
+                                                </div>
+                                                <div className={styles.default.infoWrapper}>
+                                                    <span><b>English Content</b>: {item.english_mission_content}</span>
+                                                    <span><b>Arabic Content</b>: {item.arabic_mission_content}</span>
+                                                </div>  
+                                                <Alert className="alert-default">
+                                                    <strong>Goal Info</strong>
+                                                </Alert>
+                                                <div className={styles.default.infoWrapper}>
+                                                    <span><b>English Header</b>: {item.english_goal}</span>
+                                                    <span><b>Arabic Header</b>: {item.arabic_goal}</span>
+                                                
+                                                </div>  
+                                                <div className={styles.default.infoWrapper}>
+                                                    <span><b>English Content</b>: {item.english_goal_content}</span>
+                                                    <span><b>Arabic Content</b>: {item.arabic_goal_content}</span>                                                
+                                                </div>  
+                                
                                                 </div>
   
                                 

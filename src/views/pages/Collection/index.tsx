@@ -256,29 +256,32 @@ const Collections: React.FC = () => {
                                 src={`http://localhost:6100/api/collection/get-collection-image/${item._id}/view`}
                                 top 
                               />
-                              <CardBody>
-                                <CardTitle>
-                                <div style={{display:'flex' , alignItems:'center', justifyContent:'space-between'}}>
-                                  <div style={{display:'flex'}}>
-                                          <Button className="btn-icon btn-2" color="success" type="button" onClick={()=>{
+                              <CardBody style={{padding: '0' , paddingTop:'0'}}>
+                        
+                                <CardText style={{padding: '0 !important'}}>
+                                <div className="accordion">
+                                  <Alert className="alert-default" style={{padding: '0 !important', borderRadius:'0'}}>
+                                      <div style={{display:'flex',alignContent:'center', justifyContent:'space-between'}}>
+                                            <strong style={{paddingTop:'0.7rem'}}>Main Info</strong>
+                                            <div>
+                                              <Button className={`${styles.default.editBtn}`} color="success" type="button" onClick={()=>{
                                             setObj({
                                                 _id: item._id,
                                                 arabic_name:item.arabic_name,
                                                 arabic_sub_header:item.arabic_sub_header,
                                                 english_name:item.english_name,
                                                 english_sub_header:item.english_sub_header,
-                                        
-
                                             })
                                             setEditing(true);
                                             toggleModal()
                                           
                                           }}>
+                                            Edit
                                             <span className="btn-inner--icon">
                                               <i className="ni ni-ungroup" />
                                             </span>
                                           </Button>
-                                          <Button className="btn-icon btn-2" color="danger" type="button"
+                                              <Button className={`${styles.default.deleteBtn}`} color="danger" type="button"
                                             onClick={()=>{
                                               toggleNotificationModal()
                                               setObj({
@@ -293,64 +296,24 @@ const Collections: React.FC = () => {
                                             })
                                             }}
                                           >
+                                            Delete
                                             <span className="btn-inner--icon">
                                             <i className="ni ni-fat-remove"></i>
                                             </span>
                                           </Button>
+                                            </div>
                                         </div>
-                                </div>
-                              
-                                </CardTitle>
-                                <CardText>
-                                <div className="accordion">
-                                <Card className="card-plain">
-                                    <CardHeader
-                                      role="tab"
-                                      onClick={() => collapsesToggle(`collapse${item._id}`)}
-                                      aria-expanded={openedCollapsesArr.includes(
-                                        `collapse${item._id}`
-                                      )}
-                                    >
-                                      <h5 className="mb-0"> Collection Name</h5>
-                                    </CardHeader>
-                                    <Collapse
-                                      role="tabpanel"
-                                      isOpen={openedCollapsesArr.includes(`collapse${item._id}`)}
-                                    >
-                                      <CardBody>
-                                          <div className={styles.default.infoWrapper}>
-                                            <span>English Text: {item.english_name}</span>
-                                            <span>Arabic Text: {item.arabic_name}</span>
-                                        
-                                          </div>
-                                        
-                                      </CardBody>
-                                    </Collapse>
-                                  </Card>
-                                <Card className="card-plain">
-                                  <CardHeader
-                                    role="tab"
-                                    onClick={() => collapsesToggle(`collapse${item._id}2`)}
-                                    aria-expanded={openedCollapsesArr.includes(
-                                      `collapse${item._id}2`
-                                    )}
-                                  >
-                                    <h5 className="mb-0">Collection Description</h5>
-                                  </CardHeader>
-                                  <Collapse
-                                    role="tabpanel"
-                                    isOpen={openedCollapsesArr.includes(`collapse${item._id}2`)}
-                                  >
-                                    <CardBody>
-                                        <div className={styles.default.infoWrapper}>
-                                            <span>English Text: {item.english_sub_header}</span>
-                                            <span>Arabic Text: {item.arabic_sub_header}</span>
-                                    
-                                        </div>  
-                                    </CardBody>
-                                  </Collapse>
-                                </Card>
-  
+                                
+                                  </Alert>
+                                  <div className={styles.default.infoWrapper}>
+                                      <span><b>English header</b>: {item.english_name}</span>
+                                      <span><b>Arabic header</b>: {item.arabic_name}</span>
+                                  </div>
+                                  
+                                  <div className={styles.default.infoWrapper}>
+                                      <span><b>English sub header</b>: {item.english_sub_header}</span>
+                                      <span><b>Arabic sub header</b>: {item.arabic_sub_header}</span>
+                                  </div>
                                 </div>
   
                                 

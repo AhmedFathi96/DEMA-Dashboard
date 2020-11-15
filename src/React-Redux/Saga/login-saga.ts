@@ -9,8 +9,8 @@ function* loginSaga(action: typeof actionType.actions) {
     
     try {
         const res = yield call(loginAPI, action.payload);
-        console.log('res is ===========>' ,res);
-        yield put(loginSucceeded(res.data.data.token));
+        console.log('role ===>' , res.data.data)
+        yield put(loginSucceeded({role:res.data.data.admin.role,token:res.data.data.token}));
     } catch (e) {
         yield put(loginFailed(e));
     } 

@@ -16,23 +16,27 @@ import {
 } from "reactstrap";
 import SimpleHeader from "../../../components/Headers/SimpleHeader";
 import { useDispatch } from "react-redux";
-import {  IColor, ISize, ITag } from "../../../lib";
+import {  IColor, ISize, ITag, IBadge } from "../../../lib";
 import { useSelect } from "../../../helper";
 import Loader  from 'react-loader-spinner';
 import ReactNotification from 'react-notifications-component';
-import { getTags, editTag, createTag, deleteTag, getSizes, editSize, createSize, deleteSize, getColors, editColor, createColor, deleteColor } from "../../../React-Redux/Actions/itemInfo-action";
+import { getTags, editTag, createTag, deleteTag, getSizes, editSize, createSize, deleteSize, getColors, editColor, createColor, deleteColor, getBadges, createBadge, editBadge, deleteBadge } from "../../../React-Redux/Actions/itemInfo-action";
 
 const ItemInfo: React.FC = () => {
 
   const [modal , setModel] = useState(false)
   const [notification_modal , setNotificationModel] = useState(false);
   const [sizeModal , setSizeModel] = useState(false)
+
   const [size_notification_modal , setSizeNotificationModel] = useState(false)
   const [is_editing , setEditing] = useState(false);
 
 
   const [colorModal , setColorModel] = useState(false)
   const [color_notification_modal , setColorNotificationModel] = useState(false)
+
+  const [badgeModal , setBadgeModel] = useState(false)
+  const [badge_notification_modal , setBadgeNotificationModel] = useState(false)
 
   const [obj , setObj] = useState<ITag>({
     _id:'',
@@ -48,20 +52,28 @@ const ItemInfo: React.FC = () => {
   const [colorObj , setColorObj] = useState<IColor>({
     _id:'',
     arabic_name:'',
+    english_name:'',
+    value:''
+  })
+
+  const [badgeObj , setBadgeObj] = useState<IBadge>({
+    _id:'',
+    arabic_name:'',
     english_name:''
   })
-  const {tags,tags_is_loading, sizes , sizes_is_loading , colors , colors_is_loading} = useSelect(state=> state.itemInfoReducer)
+  const {tags,tags_is_loading, sizes , sizes_is_loading ,badges,badges_is_loading, colors , colors_is_loading} = useSelect(state=> state.itemInfoReducer)
 
+  const dispatch = useDispatch();
 
 
   React.useEffect(() => {
     dispatch(getTags());
     dispatch(getSizes());
     dispatch(getColors());
+    dispatch(getBadges())
   }, []);
 
   
-  const dispatch = useDispatch();
 
   const toggleModal = () => {
     setModel(pt => !pt);
@@ -123,6 +135,7 @@ const ItemInfo: React.FC = () => {
     let ColorData: IColor= {
       arabic_name: e.target.arabic_name.value,
       english_name:  e.target.english_name.value,
+      value: e.target.value.value,
     }
 
     if(is_editing){
@@ -130,6 +143,32 @@ const ItemInfo: React.FC = () => {
       toggleColorModal();
     }else{
       dispatch(createColor(ColorData));
+      toggleColorModal();
+    }
+  }
+
+
+
+  
+  const toggleBadgeModal = () => {
+    setBadgeModel(pt => !pt);
+  };
+  const toggleBadgeNotificationModal = () => {
+    setBadgeNotificationModel(pt => !pt);
+  };
+  const handleBadgeSubmit = (e:any) =>{
+    e.preventDefault();
+    console.log('Event' , e.target.value);
+    let BadgeData: IBadge= {
+      arabic_name: e.target.arabic_name.value,
+      english_name:  e.target.english_name.value,
+    }
+
+    if(is_editing){
+      dispatch(editBadge({data:BadgeData , id:badgeObj._id === undefined? '':badgeObj._id}));
+      toggleColorModal();
+    }else{
+      dispatch(createBadge(BadgeData));
       toggleColorModal();
     }
   }
@@ -303,7 +342,7 @@ const ItemInfo: React.FC = () => {
             </button>
           </div>
           <div className="modal-body">
-          <Form role="form"onSubmit={(event) => handleColorSubmit(event)}>
+          <Form role="form" onSubmit={(event) => handleColorSubmit(event)}>
             <Alert className="alert-default">
               <strong>Color Main Info</strong>
             </Alert>
@@ -314,6 +353,10 @@ const ItemInfo: React.FC = () => {
             <FormGroup>
               <label className="form-control-label" htmlFor="example-text-input">Arabic Name</label>
               <Input id="arabic_name" name="arabic_name" defaultValue={colorObj.arabic_name} placeholder="Arabic Name ..." type="text" />
+            </FormGroup>
+            <FormGroup>
+              <label className="form-control-label" htmlFor="example-text-input">Color Value</label>
+              <Input id="value" name="value" defaultValue={colorObj.value} placeholder="Color Value ..." type="color" />
             </FormGroup>
     
             <div className="modal-footer">
@@ -337,6 +380,105 @@ const ItemInfo: React.FC = () => {
         </Modal>
       
 
+
+
+        <Modal
+              className="modal-dialog-centered modal-danger"
+              contentClassName="bg-gradient-danger"
+              isOpen={badge_notification_modal}
+              toggle={toggleBadgeNotificationModal}
+            >
+              <div className="modal-header">
+                <h6 className="modal-title" id="modal-title-notification">
+                  Your attention is required
+                </h6>
+                <button
+                  aria-label="Close"
+                  className="close"
+                  data-dismiss="badgeModal"
+                  type="button"
+                  onClick={toggleBadgeNotificationModal}
+                >
+                  <span aria-hidden={true}>×</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <div className="py-3 text-center">
+                  <i className="ni ni-bell-55 ni-3x" />
+                  <h4 className="heading mt-4">You should read this!</h4>
+                  <p>
+                    Do you want to remove {obj.english_name} from Badges ? to confirm please press delete otherwise close
+                  </p>
+                </div>
+              </div>
+              <div className="modal-footer">
+                <Button className="btn-white" color="default" type="button"  onClick={()=>{dispatch(deleteBadge(badgeObj._id !== undefined? badgeObj._id: '')); toggleBadgeNotificationModal()}}>
+                  Delete
+                </Button>
+                <Button
+                  className="text-white ml-auto"
+                  color="link"
+                  data-dismiss="badgeModal"
+                  type="button"
+                  onClick={toggleBadgeNotificationModal}
+                >
+                  Close
+                </Button>
+              </div>
+            </Modal>
+        <Modal
+          className="modal-dialog-centered"
+          isOpen={badgeModal}
+          toggle={() =>toggleBadgeModal()}
+        >
+          <div className="modal-header">
+            <h5 className="modal-title" id="exampleModalLabel">
+              {obj?.arabic_name === ''? 'Create Badge': 'Edit Badge'}
+            </h5>
+            <button
+              aria-label="Close"
+              className="close"
+              data-dismiss="badgeModal"
+              type="button"
+              onClick={toggleBadgeModal}
+            >
+              <span aria-hidden={true}>×</span>
+            </button>
+          </div>
+          <div className="modal-body">
+          <Form role="form"onSubmit={(event) => handleBadgeSubmit(event)}>
+            <Alert className="alert-default">
+              <strong>Badge Main Info</strong>
+            </Alert>
+            <FormGroup>
+              <label className="form-control-label" htmlFor="example-text-input">English Name</label>
+              <Input id="english_name" name="english_name" defaultValue={badgeObj.english_name} placeholder="English Name ..." type="text" />
+            </FormGroup>
+            <FormGroup>
+              <label className="form-control-label" htmlFor="example-text-input">Arabic Name</label>
+              <Input id="arabic_name" name="arabic_name" defaultValue={badgeObj.arabic_name} placeholder="Arabic Name ..." type="text" />
+            </FormGroup>
+    
+            <div className="modal-footer">
+              <Button
+                color="secondary"
+                data-dismiss="modal"
+                type="button"
+                onClick={toggleBadgeModal}
+              >
+                Close
+              </Button>
+              <Button color="primary" type="submit">
+                Save changes
+              </Button>
+            </div>        
+          </Form>
+              
+
+          </div>
+  
+        </Modal>
+      
 
         <Modal
               className="modal-dialog-centered modal-danger"
@@ -483,7 +625,7 @@ const ItemInfo: React.FC = () => {
                                       <Badge className={`badge-lg ${styles.default.badge}`} color="primary" pill>
                                         <span className={styles.default.span}>{item.english_name}- {item.arabic_name}</span>
                                         <div  style={{display:'flex'}}>
-                                              <Button className={styles.default.iconBtn} color="success" onClick={()=>{
+                                              <Button className={`btn-icon btn-2 ${styles.default.editBtn}`} color="success" onClick={()=>{
                                                     setObj({
                                                         _id: item._id,
                                                         arabic_name:item.arabic_name,
@@ -497,7 +639,7 @@ const ItemInfo: React.FC = () => {
                                                       <i className="ni ni-ungroup" />
                                                     </span>
                                                   </Button>
-                                                  <Button className={styles.default.iconBtn} color="danger" type="button"
+                                                  <Button className={`btn-icon btn-2 ${styles.default.deleteBtn}`} color="danger" type="button"
                                                     onClick={()=>{
                                                       toggleNotificationModal()
                                                       setObj({
@@ -559,7 +701,7 @@ const ItemInfo: React.FC = () => {
                                       <Badge className={`badge-lg ${styles.default.badge}`} color="primary" pill>
                                         <span className={styles.default.span}>{item.name}</span>
                                         <div  style={{display:'flex'}}>
-                                              <Button className={styles.default.iconBtn} color="success" onClick={()=>{
+                                              <Button className={`btn-icon btn-2 ${styles.default.editBtn}`} color="success" onClick={()=>{
                                                     setSizeObj({
                                                         _id: item._id,
                                                         name:item.name,
@@ -572,7 +714,7 @@ const ItemInfo: React.FC = () => {
                                                       <i className="ni ni-ungroup" />
                                                     </span>
                                                   </Button>
-                                                  <Button className={styles.default.iconBtn} color="danger" type="button"
+                                                  <Button className={`btn-icon btn-2 ${styles.default.deleteBtn}`} color="danger" type="button"
                                                     onClick={()=>{
                                                       toggleSizeNotificationModal()
                                                       setSizeObj({
@@ -613,7 +755,8 @@ const ItemInfo: React.FC = () => {
                                     setColorObj(
                                       { _id:'',
                                       arabic_name:'',
-                                      english_name:''
+                                      english_name:'',
+                                      value:''
                                     }
                                     )
                                   
@@ -636,11 +779,12 @@ const ItemInfo: React.FC = () => {
                                       <Badge className={`badge-lg ${styles.default.badge}`} color="primary" pill>
                                         <span className={styles.default.span}>{item.english_name}- {item.arabic_name}</span>
                                         <div  style={{display:'flex'}}>
-                                              <Button className={styles.default.iconBtn} color="success" onClick={()=>{
+                                              <Button className={`btn-icon btn-2 ${styles.default.editBtn}`} color="success" onClick={()=>{
                                                     setColorObj({
                                                         _id: item._id,
                                                         arabic_name:item.arabic_name,
                                                         english_name:item.english_name,
+                                                        value:item.value
                                                     })
                                                     setEditing(true);
                                                     toggleColorModal()
@@ -650,13 +794,92 @@ const ItemInfo: React.FC = () => {
                                                       <i className="ni ni-ungroup" />
                                                     </span>
                                                   </Button>
-                                                  <Button className={styles.default.iconBtn} color="danger" type="button"
+                                                  <Button className={`btn-icon btn-2 ${styles.default.deleteBtn}`} color="danger" type="button"
                                                     onClick={()=>{
                                                       toggleColorNotificationModal()
                                                       setColorObj({
                                                           _id: item._id,
                                                           arabic_name:item.arabic_name,
                                                           english_name:item.english_name,
+                                                          value:item.value
+                                                      })
+                                                    }}
+                                                  >
+                                                    <span className="btn-inner--icon">
+                                                    <i className="ni ni-fat-remove"></i>
+                                                    </span>
+                                                  </Button>
+                                                </div>
+                                      </Badge>
+                                    )
+                                    :
+                                    <Alert className={`alert-default ${styles.default.alert}`}>
+                                      <strong>Attention!</strong> There are no Color to show, please Create new one from the button in the top right corner
+                                    </Alert>
+                                  }
+
+                                </div>
+                            </Card>
+                    
+                          </Col>
+                          <Col lg="6">
+                            <Card className={styles.default.cardContainer}>
+                              <CardHeader className="border-0">
+                                <div style={{display:'flex' , alignItems:'center', justifyContent:'space-between'}}>
+                                  <h3 className="mb-0">Badge table</h3>
+                                  
+                                  <Button onClick={()=>{
+                                    toggleBadgeModal();
+                                    setEditing(false);
+                                    setBadgeObj(
+                                      { _id:'',
+                                      arabic_name:'',
+                                      english_name:''
+                                    }
+                                    )
+                                  
+                                  }} className="btn-icon btn-2" color="default" type="button">
+                                      <span className="btn-inner--text">Create new Badge</span>
+                                      <span className="btn-inner--icon">
+                                        <i className="ni ni-fat-add"></i>
+                                      </span>
+                                      
+                                  </Button>
+                                </div>
+                                
+                              </CardHeader>
+
+                                <div className={styles.default.cardsWrapper}>
+                                  {
+                                    badges.length > 0?
+                                    colors.map(item =>
+                                      
+                                      <Badge className={`badge-lg ${styles.default.badge}`} color="primary" pill>
+                                        <span className={styles.default.span}>{item.english_name}- {item.arabic_name}</span>
+                                        <div  style={{display:'flex'}}>
+                                              <Button className={`btn-icon btn-2 ${styles.default.editBtn}`} color="success" onClick={()=>{
+                                                    setColorObj({
+                                                        _id: item._id,
+                                                        arabic_name:item.arabic_name,
+                                                        english_name:item.english_name,
+                                                        value:item.english_name,
+                                                    })
+                                                    setEditing(true);
+                                                    toggleColorModal()
+                                                  
+                                                  }}>
+                                                    <span className="btn-inner--icon">
+                                                      <i className="ni ni-ungroup" />
+                                                    </span>
+                                                  </Button>
+                                                  <Button className={`btn-icon btn-2 ${styles.default.deleteBtn}`} color="danger" type="button"
+                                                    onClick={()=>{
+                                                      toggleColorNotificationModal()
+                                                      setColorObj({
+                                                          _id: item._id,
+                                                          arabic_name:item.arabic_name,
+                                                          english_name:item.english_name,
+                                                          value:item.english_name,
                                                       })
                                                     }}
                                                   >

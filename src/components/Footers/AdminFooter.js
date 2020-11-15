@@ -8,7 +8,7 @@ import { NavItem, NavLink, Nav, Container, Row, Col } from "reactstrap";
 class Calendar extends React.Component {
   render() {
     return (
-      <>
+      <div style={{position: 'fixed',bottom: 0,width: '100%'}}>
         <Container fluid>
           <footer className="footer pt-0">
             <Row className="align-items-center justify-content-lg-between">
@@ -17,14 +17,14 @@ class Calendar extends React.Component {
                   © {new Date().getFullYear()}{" "}
                   <a
                     className="font-weight-bold ml-1"
-                    href="https://www.creative-tim.com?ref=adpr-admin-footer"
-                    target="_blank"
+                    href=""
+        
                   >
-                    Creative Tim
+                    Ahmed Fathi
                   </a>
                 </div>
               </Col>
-              <Col lg="6">
+              {/* <Col lg="6">
                 <Nav className="nav-footer justify-content-center justify-content-lg-end">
                   <NavItem>
                     <NavLink
@@ -59,11 +59,11 @@ class Calendar extends React.Component {
                     </NavLink>
                   </NavItem>
                 </Nav>
-              </Col>
+              </Col> */}
             </Row>
           </footer>
         </Container>
-      </>
+      </div>
     );
   }
 }

@@ -23,9 +23,12 @@
     align-items: center;
     justify-content: space-between;
     margin: 0.5rem;
+    background-color: #ddd !important;
+    border-radius: 0.5rem;
 }
 .span{
     margin-right: 0.6rem;
+    font-size: 15px;
 }
 .infoWrapper span:nth-of-type(2n) {
     background: rgb(227, 228, 230);
@@ -54,4 +57,39 @@
     width: 60%;
     margin: 5rem auto;
     text-align: center;
+}
+
+
+
+
+.editBtn{
+    background-color: #ffffff !important;
+    border: 1px solid #ffffff;
+    color: #1a1a1a;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    margin: 2px !important;
+    margin: 0;
+}
+.editBtn:hover{
+    background-color: #1a1a1a !important;
+    border: 1px solid #1a1a1a;
+    color: #ffffff;
+}
+.deleteBtn{
+    background-color: #f5365c !important;
+    border: 1px solid #f5365c;
+    color: #ffffff;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    margin: 2px !important;
+    margin: 0;
+}
+
+.deleteBtn:hover{
+    background-color: #ffffff !important;
+    border: 1px solid #f5365c;
+    color: #f5365c;
 }

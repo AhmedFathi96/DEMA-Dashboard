@@ -3,11 +3,13 @@ import React from "react";
 // react library for routing
 import { Route, Switch, Redirect } from "react-router-dom";
 // core components
-import AdminNavbar from "../components/Navbars/AdminNavbar.js";
 import AdminFooter from "../components/Footers/AdminFooter.js";
 import Sidebar from "../components/Sidebar/Sidebar.js";
 
 import routes from "../routes";
+import ProductForm from "../views/pages/Products/ProductForm";
+import CreateProductForm from "../views/pages/Products/CreateProductForm";
+import ProductDetails from "../views/pages/Products/ProductDetails";
 
 class Admin extends React.Component {
   state = {
@@ -80,7 +82,7 @@ class Admin extends React.Component {
           sidenavOpen={this.state.sidenavOpen}
           logo={{
             innerLink: "/",
-            imgSrc: require("../assets/img/brand/argon-react.png"),
+            imgSrc: require("../assets/img/11af7986-2f32-44f5-84c2-38664438d6cb.jpg"),
             imgAlt: "..."
           }}a
         />
@@ -98,6 +100,18 @@ class Admin extends React.Component {
           /> */}
           <Switch>
             {this.getRoutes(routes)}
+            <Route
+              path="/Product/view-product"
+              component={ProductDetails}
+            />
+            <Route
+              path="/Product/edit-product"
+              component={ProductForm}
+            />
+            <Route
+              path="/Product/create-product"
+              component={CreateProductForm}
+            />
             <Redirect from="*" to="/" />
           </Switch>
           <AdminFooter />

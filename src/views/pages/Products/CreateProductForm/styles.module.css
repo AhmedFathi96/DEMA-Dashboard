@@ -1,0 +1,48 @@
+.productImageWrapper{
+    cursor: pointer;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0.8rem;
+}
+.img{
+    height: 270px;
+}
+.productImageContainer{
+    width: 30.33% !important;
+    margin: 0.5rem;
+    height: 350px !important;
+}
+.infoCardBody{
+    padding: 0.5rem 0.8rem;
+}
+.badge{
+    padding: 0.2 0.2rem;
+    font-size: 15px;
+}
+.productAdditionalImageContainer{
+    margin: 0.5rem;
+}
+
+.editBtn{
+    background-color: #ffffff !important;
+    border: 1px solid #ffffff;
+    color: #1a1a1a;
+}
+.editBtn:hover{
+    background-color: #1a1a1a !important;
+    border: 1px solid #1a1a1a;
+    color: #ffffff;
+}
+.deleteBtn{
+    background-color: #f5365c !important;
+    border: 1px solid #f5365c;
+    color: #ffffff;
+}
+.deleteBtn:hover{
+    background-color: #ffffff !important;
+    border: 1px solid #f5365c;
+    color: #f5365c;
+}
+.editBtn span{
+    padding-left: 0.3rem;
+}

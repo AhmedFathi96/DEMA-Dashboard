@@ -33,9 +33,13 @@ const Slider: React.FC = () => {
   const [is_editing , setEditing] = useState(false)
   const [obj , setObj] = useState<ISliderItem>({
     _id:'',
-    content:'',
-    header:'',
-    sub_header:'',
+    arabic_header:'',
+    arabic_sub_header:'',
+    english_header:'',
+    english_sub_header:'',
+    arabic_content:'',
+    english_content:'',
+    sale:'',
     order: '',
   })
 
@@ -57,16 +61,23 @@ const Slider: React.FC = () => {
 
   const handleSubmit = (e:any) =>{
     e.preventDefault();
-    console.log('Event' , e.target.value);
     let data = new FormData();
-    data.append('header', e.target.header.value);
-    data.append('sub_header', e.target.sub_header.value);
-  
-    data.append('content', e.target.content.value);
+    console.log('Obj =====>' , e.target.sale.value );
+
+    data.append('english_header', e.target.english_header.value);
+    data.append('english_sub_header', e.target.english_sub_header.value);
+    data.append('english_content', e.target.english_content.value || "none");
+
+    data.append('arabic_header', e.target.arabic_header.value);
+    data.append('arabic_sub_header', e.target.arabic_sub_header.value);
+    data.append('arabic_content', e.target.arabic_content.value || "none");
+
     data.append('order', e.target.order.value);
+    data.append('sale', e.target.sale.value || "none");
+
     data.append('slider_img', e.target.slider_img.files[0]);
 
-    console.log('Obj =====>' , obj);
+
 
     if(is_editing){
       dispatch(editSliderItem({data:data , id:obj._id === undefined? '':obj._id}));
@@ -107,7 +118,7 @@ const Slider: React.FC = () => {
                   <i className="ni ni-bell-55 ni-3x" />
                   <h4 className="heading mt-4">You should read this!</h4>
                   <p>
-                    Do you want to remove {obj.header} from Sliders ? to confirm please press delete otherwise close
+                    Do you want to remove {obj.english_header} | {obj.arabic_header} from Sliders ? to confirm please press delete otherwise close
                   </p>
                 </div>
               </div>
@@ -126,6 +137,7 @@ const Slider: React.FC = () => {
                 </Button>
               </div>
             </Modal>
+        
         <Modal
           className="modal-dialog-centered"
           isOpen={modal}
@@ -133,7 +145,7 @@ const Slider: React.FC = () => {
         >
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLabel">
-              {obj?.header === ''? 'Create Slider': 'Edit Slider'}
+              {obj?.english_header === ''? 'Create Slider': 'Edit Slider'}
             </h5>
             <button
               aria-label="Close"
@@ -152,31 +164,55 @@ const Slider: React.FC = () => {
               <Input id="order" name="order" defaultValue={obj.order} placeholder="Ex: 1 ..." type="text" />
             </FormGroup>
             <FormGroup>
-              <label className="form-control-label" htmlFor="example-text-input">Header</label>
-              <Input id="header" name="header" defaultValue={obj.header} placeholder="Header ..." type="text" />
+              <label className="form-control-label" htmlFor="example-text-input">Sale if it exists</label>
+              <Input id="sale" name="sale" defaultValue={obj.sale} placeholder="Sale ..." type="text" />
+            </FormGroup>
+
+            <FormGroup>
+              <label className="form-control-label" htmlFor="example-text-input">English Header</label>
+              <Input id="english_header" name="english_header" defaultValue={obj.english_header} placeholder="English Header ..." type="text" />
+            </FormGroup>
+            <FormGroup>
+              <label className="form-control-label" htmlFor="example-text-input">Arabic Header</label>
+              <Input id="arabic_header" name="arabic_header" defaultValue={obj.arabic_header} placeholder="Arabic Header ..." type="text" />
             </FormGroup>
 
         
             <FormGroup>
-              <label className="form-control-label" htmlFor="example-text-input">Sub Header</label>
-              <Input id="sub_header" rows="3" name="sub_header" defaultValue={obj.sub_header} placeholder="Sub Header ..." type="text" />
+              <label className="form-control-label" htmlFor="example-text-input">English Sub Header</label>
+              <Input id="english_sub_header" rows="3" name="english_sub_header" defaultValue={obj.english_sub_header} placeholder="English Sub Header ..." type="text" />
             </FormGroup>
             <FormGroup>
-              <label className="form-control-label" htmlFor="example-text-input">Content</label>
-              <Input id="content" rows="3"  name="content" defaultValue={obj.content} placeholder="Content ..." type="text" />
+              <label className="form-control-label" htmlFor="example-text-input">Arabic Sub Header</label>
+              <Input id="arabic_sub_header" rows="3" name="arabic_sub_header" defaultValue={obj.arabic_sub_header} placeholder="Arabic Sub Header ..." type="text" />
             </FormGroup>
-            <div className="custom-file">
-              <input
-                className="custom-file-input"
-                id="slider_img"
-                name="slider_img"
-                lang="en"
-                type="file"
-              />
+
+
+            <FormGroup>
+              <label className="form-control-label" htmlFor="example-text-input">English Content</label>
+              <Input id="english_content"  name="english_content" defaultValue={obj.english_content} placeholder="English Content ..." type="text" />
+            </FormGroup>
+            <FormGroup>
+              <label className="form-control-label" htmlFor="example-text-input">Arabic Content</label>
+              <Input id="arabic_content"   name="arabic_content" defaultValue={obj.arabic_content} placeholder="Arabic Content ..." type="text" />
+            </FormGroup>
+
+            <FormGroup>
+
+              <div className="custom-file">
+                
+                <input
+                  className="custom-file-input"
+                  id="slider_img"
+                  name="slider_img"
+                  lang="en"
+                  type="file"
+                />
               <label className="custom-file-label" htmlFor="customFileLang">
-                Select Slider image
+                  
               </label>
-            </div>
+              </div>
+            </FormGroup>
             <div className="modal-footer">
               <Button
                 color="secondary"
@@ -215,9 +251,13 @@ const Slider: React.FC = () => {
                             setObj(
                               { 
                                 _id:'',
-                                content:'',
-                                header:'',
-                                sub_header:'',
+                                arabic_header:'',
+                                arabic_sub_header:'',
+                                english_header:'',
+                                english_sub_header:'',
+                                arabic_content:'',
+                                english_content:'',
+                                sale:'',
                                 order: '',
                               }
                             )
@@ -245,41 +285,50 @@ const Slider: React.FC = () => {
                                 src={`http://localhost:6100/api/slider/get-slider-image/${item._id}/view`}
                                 top 
                               />
-                              <CardBody>
+                              <CardBody className={styles.default.cardBody}>
                                 <CardTitle>
                                 <div style={{display:'flex' , alignItems:'center', justifyContent:'space-between'}}>
-                                  <h3 className="mb-0">Card Order : {item.order}</h3>
                                   
                                   <div style={{display:'flex'}}>
-                                          <Button className="btn-icon btn-2" color="success" type="button" onClick={()=>{
+                                          <Button className={`btn-icon btn-2 ${styles.default.editBtn}`} color="success" type="button" onClick={()=>{
                                             setObj({
                                                 _id: item._id,
-                                                sub_header:item.sub_header,
-                                                header:item.header,
-                                                content:item.content,
+                                                arabic_header:item.arabic_header,
+                                                arabic_sub_header:item.arabic_sub_header,
+                                                english_header:item.english_header,
+                                                english_sub_header:item.english_sub_header,
+                                                arabic_content:item.arabic_content,
+                                                english_content:item.english_content,
+                                                sale:item.sale,
                                                 order: item.order,
                                             })
                                             setEditing(true);
                                             toggleModal()
                                           
                                           }}>
+                                            Edit
                                             <span className="btn-inner--icon">
                                               <i className="ni ni-ungroup" />
                                             </span>
                                           </Button>
-                                          <Button className="btn-icon btn-2" color="danger" type="button"
+                                          <Button className={`btn-icon btn-2 ${styles.default.deleteBtn}`} color="danger" type="button"
                                             onClick={()=>{
                                               toggleNotificationModal()
                                               setObj({
                                                 _id: item._id,
-                                                sub_header:item.sub_header,
-                                                header:item.header,
-                                                content:item.content,
+                                                arabic_header:item.arabic_header,
+                                                arabic_sub_header:item.arabic_sub_header,
+                                                english_header:item.english_header,
+                                                english_sub_header:item.english_sub_header,
+                                                arabic_content:item.arabic_content,
+                                                english_content:item.english_content,
+                                                sale:item.sale,
                                                 order: item.order,
 
                                             })
                                             }}
                                           >
+                                            Delete
                                             <span className="btn-inner--icon">
                                             <i className="ni ni-fat-remove"></i>
                                             </span>
@@ -288,16 +337,38 @@ const Slider: React.FC = () => {
                                 </div>
                               
                                 </CardTitle >
-                                    <CardTitle>
-                                      {item.header}
-                                    </CardTitle>
-                                    <CardText>
-                                      {item.sub_header}
-                                    </CardText>
-                                    <CardText>
-                                      <small className="text-muted">{item.content}</small>
-                                    </CardText>
-                                
+                                    <h3 className="mb-0">Card Order : {item.order}</h3>
+                                    <br/>
+                                    <div className={styles.default.infoWrapper}>
+                                        <span><b>English Header</b>: {item.english_header}</span>
+                                        <span><b>Arabic Header</b>: {item.arabic_header}</span>
+                                    </div>  
+                              
+                                    <br/>
+                                    <div className={styles.default.infoWrapper}>
+                                        <span><b>English Sub Header</b>: {item.english_sub_header}</span>
+                                        <span><b>Arabic Sub Header</b>: {item.arabic_sub_header}</span>
+                                    </div>
+                              
+                                    <br/>
+
+                                    {
+                                      item.english_content === ""? '':
+                                      <div className={styles.default.infoWrapper}>
+                                        <span><b>English Content</b>: {item.english_content}</span>
+                                        <span><b>Arabic Content</b>: {item.arabic_content}</span>
+                                      </div>
+                                    }
+                                    
+                              
+                                    <br/>
+                                    {
+                                      item.sale === ""? '':
+                                      <div className={styles.default.infoWrapper}>
+                                        <span><b>Sale</b>: {item.sale}</span>
+                                      </div>
+                                    }
+                                    
                               </CardBody>
                             
                             </Card>

@@ -19,9 +19,10 @@ import SimpleHeader from "../../../components/Headers/SimpleHeader";
 import { useDispatch } from "react-redux";
 import { IAdminUser } from "../../../lib";
 import { createAdmin, editAdmin, getAdmins, deleteAdmin } from "../../../React-Redux/Actions/admin-action";
-import { useSelect } from "../../../helper";
+import { selectRole, useSelect } from "../../../helper";
 import Loader  from 'react-loader-spinner';
 import ReactNotification from 'react-notifications-component';
+import { select } from "redux-saga/effects";
 
 const Admins: React.FC = () => {
 
@@ -38,7 +39,7 @@ const Admins: React.FC = () => {
   })
 
   const {admins,is_loading} = useSelect(state=> state.adminsReducer)
-
+  const {role} = useSelect(state=> state.authReducer)
   React.useEffect(() => {
     dispatch(getAdmins())
   } , [])
@@ -234,7 +235,7 @@ const Admins: React.FC = () => {
         </Modal>
       
         {
-          is_loading?
+          is_loading && (role === 'admin')?
             <>
               <SimpleHeader name="Admins" parentName="Admin" />
               <Container className="mt--6" fluid>
@@ -321,7 +322,7 @@ const Admins: React.FC = () => {
                                 </td>
                                 <td style={{width:'15%'}}>
                                   <div style={{display:'flex'}}>
-                                    <Button className="btn-icon btn-2" color="success" type="button" onClick={()=>{
+                                    <Button className={`btn-icon btn-2 ${styles.default.editBtn}`} color="success" type="button" onClick={()=>{
                                       setObj({
                                         email:item.email,
                                         name:item.name,
@@ -334,11 +335,12 @@ const Admins: React.FC = () => {
                                       toggleModal()
                                     
                                     }}>
+                                      Edit 
                                       <span className="btn-inner--icon">
                                         <i className="ni ni-ungroup" />
                                       </span>
                                     </Button>
-                                    <Button className="btn-icon btn-2" color="danger" type="button"
+                                    <Button className={`btn-icon btn-2 ${styles.default.deleteBtn}`} color="danger" type="button"
                                       onClick={()=>{
                                         toggleNotificationModal()
                                         setObj({
@@ -351,6 +353,7 @@ const Admins: React.FC = () => {
                                         })
                                       }}
                                     >
+                                      Delete
                                       <span className="btn-inner--icon">
                                       <i className="ni ni-fat-remove"></i>
                                       </span>

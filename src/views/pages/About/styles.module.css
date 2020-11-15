@@ -13,10 +13,13 @@
 }
 
 
-.infoWrapper span:nth-of-type(2n) {
+.infoWrapper span:nth-of-type(n) {
     background: rgb(227, 228, 230);
 }
-
+/* .infoWrapper span:nth-of-type(n):hover {
+    background: rgb(65, 63, 63);
+    color: #ffffff;
+} */
 .cardsWrapper{
     display: flex;
     flex-wrap: wrap;

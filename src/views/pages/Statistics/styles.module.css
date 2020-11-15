@@ -17,11 +17,6 @@
     background: rgb(227, 228, 230);
 }
 
-
-.infoWrapper span:hover{
-    background-color: #2dce89 !important;
-    color: #ffffff;
-}
 .cardsWrapper{
     display: flex;
     flex-wrap: wrap;
@@ -39,4 +34,46 @@
     width: 60%;
     margin: 5rem auto;
     text-align: center;
+}
+
+
+
+.editBtn{
+    background-color: #ffffff !important;
+    border: 1px solid #1a1a1a;
+    color: #1a1a1a;
+}
+.editBtn:hover{
+    background-color: #1a1a1a !important;
+    border: 1px solid #1a1a1a;
+    color: #ffffff;
+}
+.deleteBtn{
+    background-color: #f5365c !important;
+    border: 1px solid #f5365c;
+    color: #ffffff;
+}
+.deleteBtn:hover{
+    background-color: #ffffff !important;
+    border: 1px solid #f5365c;
+    color: #f5365c;
+}
+.editBtn span{
+    padding-left: 0.3rem !important;
+}
+
+
+.infoWrapper{
+    display: flex;
+    flex-direction: column;
+    margin: 0 1rem;
+}
+.infoWrapper span{
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+}
+
+
+.infoWrapper span:nth-of-type(n) {
+    background: rgb(227, 228, 230);
 }

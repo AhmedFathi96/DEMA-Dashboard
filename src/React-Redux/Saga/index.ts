@@ -73,6 +73,25 @@ import { watchEditTagSaga } from './edit-tag-saga';
 import { watchEditColorSaga } from './edit-color-saga';
 import { watchEditCategorySaga } from './edit-category-saga';
 import { watchEditCollectionSaga } from './edit-collection-saga';
+import { watchCreateProductItemSaga } from './create-product-saga';
+import { watchCreateProductImageItemSaga } from './create-product-image-saga';
+import { watchCreateProductAdditionalInfoItemSaga } from './create-product-additional-info-saga';
+import { watchGetProductsSaga } from './get-products-saga';
+import { watchGetProductImagesSaga } from './get-product-images-saga';
+import { watchGetProductAdditionalInfosSaga } from './get-product-additional-info-saga';
+import { watchEditProductSaga } from './edit-product-saga';
+import { watchEditProductImageSaga } from './edit-product-image-saga';
+import { watchEditProductAdditionalInfoSaga } from './edit-product-additional-info-saga';
+import { watchDeleteProductSaga } from './delete-product-saga';
+import { watchDeleteProductAdditionalInfoSaga } from './delete-product-additional-info-saga';
+import { watchDeleteProductImageSaga } from './delete-product-image-saga';
+
+import { watchGetBadgeSaga } from './get-badge-saga';
+import { watchCreateBadgeSaga } from './create-badge-saga';
+import { watchEditBadgeSaga } from './edit-badge-saga';
+import { watchDeleteBadgeSaga } from './delete-badge-saga';
+
+
 export default function* rootSaga() {
     yield all([
         watchLoginSaga(),
@@ -149,7 +168,23 @@ export default function* rootSaga() {
         watchEditTagSaga(),
         watchEditColorSaga(),
         watchEditCategorySaga(),
-        watchEditCollectionSaga()
+        watchEditCollectionSaga(),
+        watchCreateProductItemSaga(),
+        watchCreateProductImageItemSaga(),
+        watchCreateProductAdditionalInfoItemSaga(),
+        watchGetProductsSaga(),
+        watchGetProductImagesSaga(),
+        watchGetProductAdditionalInfosSaga(),
+        watchEditProductSaga(),
+        watchEditProductImageSaga(),
+        watchEditProductAdditionalInfoSaga(),
+        watchDeleteProductSaga(),
+        watchDeleteProductAdditionalInfoSaga(),
+        watchDeleteProductImageSaga(),
 
+        watchGetBadgeSaga(),
+        watchCreateBadgeSaga(),
+        watchEditBadgeSaga(),
+        watchDeleteBadgeSaga(),
     ]);
 }

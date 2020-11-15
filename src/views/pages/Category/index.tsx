@@ -236,56 +236,59 @@ const Category: React.FC = () => {
                                 src={`http://localhost:6100/api/category/get-category-image/${item._id}/view`}
                                 top 
                               />
-                              <CardBody>
-                                <CardTitle>
+                              <CardBody style={{padding: '0' , paddingTop:'0'}}>
+                                <CardTitle style={{padding: '0 !important'}}>
                                 <div style={{display:'flex' , alignItems:'center', justifyContent:'space-between'}}>
-                                  
-                                  <div style={{display:'flex'}}>
-                                          <Button className="btn-icon btn-2" color="success" type="button" onClick={()=>{
-                                            setObj({
-                                                _id: item._id,
-                                                arabic_name:item.arabic_name,
-                                                english_name:item.english_name,
-                                                starting_price:item.starting_price,
-                                            })
-                                            setEditing(true);
-                                            toggleModal()
-                                          
-                                          }}>
-                                            <span className="btn-inner--icon">
-                                              <i className="ni ni-ungroup" />
-                                            </span>
-                                          </Button>
-                                          <Button className="btn-icon btn-2" color="danger" type="button"
-                                            onClick={()=>{
-                                              toggleNotificationModal()
-                                              setObj({
-                                                _id: item._id,
-                                                arabic_name:item.arabic_name,
-                                                english_name:item.english_name,
-                                                starting_price:item.starting_price,
+                                      <Alert className="alert-default" style={{padding: '0 !important', borderRadius:'0',width:'100%'}}>
+                                          <div style={{display:'flex',alignContent:'center', justifyContent:'space-between'}}>
+                                                <strong style={{paddingTop:'0.7rem'}}>Main Info</strong>
+                                                <div>
+                                                  <Button className={`btn-icon btn-2 ${styles.default.editBtn}`} color="success" type="button" onClick={()=>{
+                                                    setObj({
+                                                        _id: item._id,
+                                                        arabic_name:item.arabic_name,
+                                                        english_name:item.english_name,
+                                                        starting_price:item.starting_price,
+                                                    })
+                                                    setEditing(true);
+                                                    toggleModal()
+                                                  
+                                                  }}>
+                                                    Edit
+                                                    <span className="btn-inner--icon">
+                                                      <i className="ni ni-ungroup" />
+                                                    </span>
+                                                  </Button>
+                                                  <Button className={`btn-icon btn-2 ${styles.default.deleteBtn}`} color="danger" type="button"
+                                                    onClick={()=>{
+                                                      toggleNotificationModal()
+                                                      setObj({
+                                                        _id: item._id,
+                                                        arabic_name:item.arabic_name,
+                                                        english_name:item.english_name,
+                                                        starting_price:item.starting_price,
 
-                                            })
-                                            }}
-                                          >
-                                            <span className="btn-inner--icon">
-                                            <i className="ni ni-fat-remove"></i>
-                                            </span>
-                                          </Button>
-                                        </div>
+                                                    })
+                                                    }}
+                                                  >
+                                                    Delete
+                                                    <span className="btn-inner--icon">
+                                                    <i className="ni ni-fat-remove"></i>
+                                                    </span>
+                                                  </Button>
+                                                </div>
+                                            </div>
+                                      </Alert>
                                 </div>
                               
                                 </CardTitle >
-                                    <CardTitle>
+
+                                  <div className={styles.default.infoWrapper}>
                                       <span><b>English Name</b>: {item.english_name}</span>
-                                                        
-                                    </CardTitle>
-                                    <CardTitle>
                                       <span><b>Arabic Name</b>: {item.arabic_name}</span>
-                                    </CardTitle>
-                                    <CardTitle>
-                                    <span><b>Starting Price</b>: {item.starting_price}</span>
-                                    </CardTitle>
+                                      <span><b>Starting Price</b>: {item.starting_price}</span>
+                                  </div>
+                              
                                 
                               </CardBody>
                             
